@@ -33,8 +33,6 @@ public class ProfessorDAO extends Manager{
  
     protected void read() {
     	Session session = sessionFactory.openSession();
-s
-	 
 	    session.close();
     }
  
