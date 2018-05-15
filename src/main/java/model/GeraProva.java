@@ -22,9 +22,9 @@ public class GeraProva {
 	              documento.open();
 	             
 	              // adicionando um parágrafo no documento
-	           
+	              for(int i=0;i<2;i++){
 	              documento.add(new Paragraph("1.Esse programa é muito mito, sim ou não?"));
-	              
+	              }
 	}               
 	          catch(DocumentException de) {
 	              System.err.println(de.getMessage());
