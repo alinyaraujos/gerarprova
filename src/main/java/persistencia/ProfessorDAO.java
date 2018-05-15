@@ -32,22 +32,43 @@ public class ProfessorDAO extends Manager{
 	}
  
     protected void read() {
-        Session session = sessionFactory.openSession();
-        
-        session.close();
+    	Session session = sessionFactory.openSession();
+s
+	 
+	    session.close();
     }
  
-    protected void update() {
-        // code to modify a book
+    protected void update(Professor p) {
+        // code to modify a professor
+        p.setCpf(p.getCpf());
+        p.setNome(p.getNome());
+        p.setEmail(p.getEmail());
+        p.setInstituicao(p.getInstituicao());
+     
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+        session.update(p);
+        session.getTransaction().commit();
+        session.close();
     	 
     }
  
     protected void delete(Professor p) {
-        // code to remove a book	
     }
     
     protected void delete(String cpf) {
         // code to remove a book	
+    	Professor p = new Professor();
+	    p.setCpf(cpf);
+	 
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	 
+	    session.delete(p);
+	 
+	    session.getTransaction().commit();
+	    session.close();
+    	
     }
     
     public static void main(String[] args) {
