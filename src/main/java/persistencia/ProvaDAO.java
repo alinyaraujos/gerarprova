@@ -55,22 +55,6 @@ public class ProvaDAO extends Manager{
 	    session.delete(p);
 	    session.getTransaction().commit();
 	    session.close();	
-    }
-    
-    
-    public static void main(String[] args) {
-        // code to run the program
-    	
-    	Prova b = new Prova();
-    	b.cadastrar(22234, "sdfdsf", "2013.INFO-T", null);
-    	
-    	ProvaDAO bm = new ProvaDAO();
-    	bm.setup();
-    	bm.create(b);
-    	//bm.exit();
-        
-        bm.exit();
-    }
-    
+    }    
     
 }
