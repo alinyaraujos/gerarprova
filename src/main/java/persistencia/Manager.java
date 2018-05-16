@@ -25,8 +25,9 @@ public abstract class Manager <T>{
     
     public abstract void delete(Object codigo);
 	
-	
-    protected void setup() {
+
+    public void setup() {
+
         // code to load Hibernate Session factory
     	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
     	        .configure() // configures settings from hibernate.cfg.xml

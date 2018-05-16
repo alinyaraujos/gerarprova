@@ -10,7 +10,6 @@ import org.hibernate.SessionFactory;
 import model.Assunto;
 import model.Professor;
 
-
 public class ProfessorDAO extends Manager<Professor>{
 	
 	private Professor professor;
@@ -22,6 +21,7 @@ public class ProfessorDAO extends Manager<Professor>{
 	
     public void create() {
         Session session = sessionFactory.openSession();
+
         session.beginTransaction();
         session.save(this.professor);
         session.getTransaction().commit();
@@ -52,6 +52,7 @@ public class ProfessorDAO extends Manager<Professor>{
     public void update() {
         // code to modify a professor
         Session session = sessionFactory.openSession();
+
         session.beginTransaction();
         
         if (this.read(this.professor) != null) 

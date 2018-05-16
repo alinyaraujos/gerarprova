@@ -42,7 +42,6 @@ public class QuestaoDAO extends Manager<Questao>{
 	}
  
     public Questao read(Object c) {
-    	
     	int codigo = (Integer)c;
     	Session session = sessionFactory.openSession();
     	Questao q = session.get(Questao.class, codigo);

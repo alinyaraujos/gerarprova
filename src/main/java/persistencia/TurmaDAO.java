@@ -21,6 +21,7 @@ public class TurmaDAO extends Manager<Turma>{
  
     public void create() {
         Session session = sessionFactory.openSession();
+
         session.beginTransaction();
         session.save(this.turma);
         session.getTransaction().commit();

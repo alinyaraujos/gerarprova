@@ -9,7 +9,6 @@ import org.hibernate.Session;
 import model.Disciplina;
 import model.Disciplina;;
 
-
 public class DisciplinaDAO extends Manager<Disciplina>{
 	
 	private Disciplina disciplina;

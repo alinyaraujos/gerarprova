@@ -128,3 +128,4 @@ public class TelaMinhaInformacao extends JFrame {
 		contentPane.add(btnSalvar);
 	}
 }
+
