@@ -79,6 +79,7 @@ public class TelaPrincipal extends JFrame {
 		btnAlunos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 new TelaAluno().setVisible(true);
+				 dispose();
 			}
 		});
 		btnAlunos.setBounds(27, 167, 158, 23);
