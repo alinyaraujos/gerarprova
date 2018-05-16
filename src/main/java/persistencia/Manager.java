@@ -15,7 +15,7 @@ public abstract class Manager <T>{
 
 	protected SessionFactory sessionFactory;
 	
-	public abstract void create();
+	public abstract boolean create();
     
     public abstract List<T> getAll();
  

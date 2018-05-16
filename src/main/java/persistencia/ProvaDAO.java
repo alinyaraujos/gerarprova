@@ -3,6 +3,8 @@ package persistencia;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 
@@ -19,12 +21,18 @@ public class ProvaDAO extends Manager<Prova>{
 		this.prova=prova;
 	}
  
-    public void create() {
-        Session session = sessionFactory.openSession();
+    public boolean create() {
+        try {
+    	Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(this.prova);
         session.getTransaction().commit();
         session.close();
+        
+        }catch(Exception e){
+        	JOptionPane.showMessageDialog(null, "erro ao salvar");
+        	return false;
+        } return true;
     }
     
     public List<Prova> getAll(){     	

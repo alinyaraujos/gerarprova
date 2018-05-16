@@ -3,6 +3,8 @@ package persistencia;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.hibernate.query.Query;
 
 import model.Aluno;
@@ -21,12 +23,17 @@ public class AssuntoDAO extends Manager<Assunto>{
 		this.assunto=assunto;
 	}
 	
-    public void create() {
-        Session session = sessionFactory.openSession();
+    public boolean create() {
+        try {
+    	Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(this.assunto);
         session.getTransaction().commit();
         session.close();
+        }catch(Exception e){
+        	JOptionPane.showMessageDialog(null, "erro ao salvar");
+        	return false;
+        } return true;
     }
     
     public List<Assunto> getAll(){     	
