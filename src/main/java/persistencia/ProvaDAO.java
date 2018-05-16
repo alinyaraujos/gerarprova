@@ -12,7 +12,7 @@ import model.Prova;
 public class ProvaDAO extends Manager{
  
     protected void create(Prova p) {
-        Session session = sessionFactory.openSession();
+        Session session = this.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(p);
         session.getTransaction().commit();
@@ -21,7 +21,7 @@ public class ProvaDAO extends Manager{
     
     public List<Prova> getAll(){     	
     	List<Prova> a;	
-    	Session session = sessionFactory.openSession();
+    	Session session = this.getSessionFactory().openSession();
         Query Prova = session.createQuery("from Prova");
         a= Prova.getResultList();
         session.close();
@@ -29,7 +29,7 @@ public class ProvaDAO extends Manager{
 	}
  
     protected Prova read(String codigo) {
-    	Session session = sessionFactory.openSession();  
+    	Session session = this.getSessionFactory().openSession();  
     	Prova p = session.get(Prova.class, codigo);
 	    session.close();
 	    return p;
@@ -37,7 +37,7 @@ public class ProvaDAO extends Manager{
  
     protected void update(Prova p) {
         // code to modify     
-        Session session = sessionFactory.openSession();
+        Session session = this.getSessionFactory().openSession();
         session.beginTransaction();
         session.update(p);
         session.getTransaction().commit();
@@ -49,7 +49,7 @@ public class ProvaDAO extends Manager{
     	Prova p = new Prova();
 	    p.setCodigo(codigo);
 	 
-	    Session session = sessionFactory.openSession();
+	    Session session = this.getSessionFactory().openSession();
 	    session.beginTransaction();
 	 
 	    session.delete(p);

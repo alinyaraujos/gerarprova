@@ -7,9 +7,9 @@ import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 public class Manager {
 
-	protected SessionFactory sessionFactory;
+	private SessionFactory sessionFactory;
 	 
-    protected void setup() {
+    public void setup() {
         // code to load Hibernate Session factory
     	
     	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
@@ -18,14 +18,16 @@ public class Manager {
     	try {
     	    this.sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
     	} catch (Exception ex) {
-    	    StandardServiceRegistryBuilder.destroy(registry);
-    	}
-    	
-    	
+    		System.out.println(ex.getMessage());
+    		//StandardServiceRegistryBuilder.destroy(registry);
+    	}    	
     }
     
+    public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
     
-    protected void exit() {
+	public void exit() {
         // code to close Hibernate Session factory
     	this.sessionFactory.close();
     }

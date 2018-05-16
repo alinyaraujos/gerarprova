@@ -6,7 +6,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Professor;
+import persistencia.ProfessorDAO;
+
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -43,6 +48,7 @@ public class TelaMinhaInformacao extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 457, 342);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -88,21 +94,32 @@ public class TelaMinhaInformacao extends JFrame {
 		contentPane.add(entradaInstituicao);
 		entradaInstituicao.setColumns(10);
 		
-		//ação cancelar
+		//aï¿½ï¿½o cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaPrincipal().setVisible(true);
+				 dispose();
 			}
 		});
 		btnCancelar.setBounds(96, 258, 89, 23);
 		contentPane.add(btnCancelar);
 		
-		//ação salvar
+		//aï¿½ï¿½o salvar
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaPrincipal().setVisible(true);
+				Professor p = new Professor();
+				p.cadastrar(entradaCpf.getText(), entradaNome.getText(), entradaEmail.getText(), entradaInstituicao.getText());
+				
+				ProfessorDAO professorManager = new ProfessorDAO();
+				
+				professorManager.setup();
+				professorManager.create(p);
+				professorManager.exit();
+				JOptionPane.showMessageDialog(null, "Dados atualizados !");
+				
+				dispose();
+				 
 			}
 		});
 		btnSalvar.setBounds(251, 258, 89, 23);

@@ -12,8 +12,8 @@ import model.Professor;
 
 public class ProfessorDAO extends Manager{
  
-    protected void create(Professor p) {
-        Session session = sessionFactory.openSession();
+    public void create(Professor p) {
+        Session session = this.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(p);
         session.getTransaction().commit();
@@ -23,7 +23,7 @@ public class ProfessorDAO extends Manager{
     public List<Professor> getAll(){     
     	
     	List<Professor> p;	
-    	Session session = sessionFactory.openSession();
+    	Session session = this.getSessionFactory().openSession();
     	
         Query professor = session.createQuery("from Professor");
         p= professor.getResultList();
@@ -32,7 +32,7 @@ public class ProfessorDAO extends Manager{
 	}
  
     protected Professor read(String cpf) {
-    	Session session = sessionFactory.openSession();  
+    	Session session = this.getSessionFactory().openSession();  
 	    
 	    Professor p = session.get(Professor.class, cpf);
 	 
@@ -50,7 +50,7 @@ public class ProfessorDAO extends Manager{
         p.setEmail(p.getEmail());
         p.setInstituicao(p.getInstituicao());
      
-        Session session = sessionFactory.openSession();
+        Session session = this.getSessionFactory().openSession();
         session.beginTransaction();
         session.update(p);
         session.getTransaction().commit();
@@ -62,7 +62,7 @@ public class ProfessorDAO extends Manager{
     	Professor p = new Professor();
 	    p.setCpf(cpf);
 	 
-	    Session session = sessionFactory.openSession();
+	    Session session = this.getSessionFactory().openSession();
 	    session.beginTransaction();
 	 
 	    session.delete(p);
@@ -72,7 +72,7 @@ public class ProfessorDAO extends Manager{
 	    session.close();	
     	
     }
-    
+/*    
     public static void main(String[] args) {
         // code to run the program
     	
@@ -91,4 +91,5 @@ public class ProfessorDAO extends Manager{
         bm.exit();
 
     }
+*/
 }

@@ -13,7 +13,7 @@ import model.Questao;
 public class QuestaoDAO extends Manager{
  
     protected void create(Questao q) {
-        Session session = sessionFactory.openSession();
+        Session session = this.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(q);
         session.getTransaction().commit();
@@ -24,7 +24,7 @@ public class QuestaoDAO extends Manager{
     	
     	List<Questao> q;
     	
-    	Session session = sessionFactory.openSession();
+    	Session session = this.getSessionFactory().openSession();
     	
         Query professor = session.createQuery("from Questao");
         q = professor.getResultList();
@@ -34,7 +34,7 @@ public class QuestaoDAO extends Manager{
 	}
  
     protected Questao read(int codigo) {
-    	Session session = sessionFactory.openSession();
+    	Session session = this.getSessionFactory().openSession();
     	
     	Questao q = session.get(Questao.class, codigo);
     	
@@ -46,7 +46,7 @@ public class QuestaoDAO extends Manager{
     protected List<Questao> getBySubject(int subjectCode){
     	List<Questao> questions = null;
     	
-    	Session session = sessionFactory.openSession();
+    	Session session = this.getSessionFactory().openSession();
     	
     	questions = session.createQuery("from Questao").getResultList();
     	
@@ -84,7 +84,7 @@ public class QuestaoDAO extends Manager{
         if (qNew.getCodAssunto() != 0)
         	q.setCodAssunto(qNew.getCodAssunto());
         
-        Session session = sessionFactory.openSession();
+        Session session = this.getSessionFactory().openSession();
         session.beginTransaction();
         session.update(q);
         session.getTransaction().commit();
@@ -97,7 +97,7 @@ public class QuestaoDAO extends Manager{
     	Questao q = new Questao();
 	    q.setCodigo(codigo);
 	 
-	    Session session = sessionFactory.openSession();
+	    Session session = this.getSessionFactory().openSession();
 	    session.beginTransaction();
 	 
 	    session.delete(q);

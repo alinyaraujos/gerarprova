@@ -12,7 +12,7 @@ import model.Disciplina;;
 public class DisciplinaDAO extends Manager{
  
     protected void create(Disciplina d) {
-        Session session = sessionFactory.openSession();
+        Session session = this.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(d);
         session.getTransaction().commit();
@@ -22,7 +22,7 @@ public class DisciplinaDAO extends Manager{
     public List<Disciplina> getAll(){     
     	
     	List<Disciplina> d;	
-    	Session session = sessionFactory.openSession();
+    	Session session = this.getSessionFactory().openSession();
         Query disciplina = session.createQuery("from Professor");
         d= disciplina.getResultList();
         session.close();
@@ -30,7 +30,7 @@ public class DisciplinaDAO extends Manager{
 	}
  
     protected Disciplina read(String codigo) {
-    	Session session = sessionFactory.openSession();  
+    	Session session = this.getSessionFactory().openSession();  
     	Disciplina d = session.get(Disciplina.class, codigo);
 	    session.close();
 	    return d;
@@ -42,7 +42,7 @@ public class DisciplinaDAO extends Manager{
         d.setNome(d.getNome());
         d.setCpfProfessor(d.getCpfProfessor());
      
-        Session session = sessionFactory.openSession();
+        Session session = this.getSessionFactory().openSession();
         session.beginTransaction();
         session.update(d);
         session.getTransaction().commit();
@@ -54,7 +54,7 @@ public class DisciplinaDAO extends Manager{
     	Disciplina d = new Disciplina();
 	    d.setCodigo(codigo);
 	 
-	    Session session = sessionFactory.openSession();
+	    Session session = this.getSessionFactory().openSession();
 	    session.beginTransaction();
 	 
 	    session.delete(d);

@@ -39,6 +39,7 @@ public class TelaPrincipal extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -54,7 +55,7 @@ public class TelaPrincipal extends JFrame {
 		btnGerarProva.setBounds(169, 216, 101, 23);
 		contentPane.add(btnGerarProva);
 		
-		//ação minha informação
+		//aï¿½ï¿½o minha informaï¿½ï¿½o
 		JButton btnMinhasInformaes = new JButton("Minhas Informa\u00E7\u00F5es");
 		btnMinhasInformaes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -64,7 +65,7 @@ public class TelaPrincipal extends JFrame {
 		btnMinhasInformaes.setBounds(27, 99, 158, 23);
 		contentPane.add(btnMinhasInformaes);
 		
-		// ação Turmas
+		// aï¿½ï¿½o Turmas
 		JButton btnTurmas = new JButton("Turmas");
 		btnTurmas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -74,7 +75,7 @@ public class TelaPrincipal extends JFrame {
 		btnTurmas.setBounds(27, 133, 158, 23);
 		contentPane.add(btnTurmas);
 		
-		//Ação alunos
+		//Aï¿½ï¿½o alunos
 		JButton btnAlunos = new JButton("Alunos");
 		btnAlunos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -84,7 +85,7 @@ public class TelaPrincipal extends JFrame {
 		btnAlunos.setBounds(27, 167, 158, 23);
 		contentPane.add(btnAlunos);
 		
-		//Ação disciplina
+		//Aï¿½ï¿½o disciplina
 		JButton btnDisciplinas = new JButton("Disciplinas");
 		btnDisciplinas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -94,7 +95,7 @@ public class TelaPrincipal extends JFrame {
 		btnDisciplinas.setBounds(252, 99, 158, 23);
 		contentPane.add(btnDisciplinas);
 		
-		//Ação assuntos
+		//Aï¿½ï¿½o assuntos
 		JButton btnAssuntos = new JButton("Assuntos");
 		btnAssuntos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -104,7 +105,7 @@ public class TelaPrincipal extends JFrame {
 		btnAssuntos.setBounds(252, 133, 158, 23);
 		contentPane.add(btnAssuntos);
 		
-		// ação questões
+		// aï¿½ï¿½o questï¿½es
 		JButton btnQuestes = new JButton("Quest\u00F5es");
 		btnQuestes.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

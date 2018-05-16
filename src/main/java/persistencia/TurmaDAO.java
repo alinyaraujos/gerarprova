@@ -12,7 +12,7 @@ import model.Turma;
 public class TurmaDAO extends Manager{
  
     protected void create(Turma t) {
-        Session session = sessionFactory.openSession();
+        Session session = this.getSessionFactory().openSession();
         session.beginTransaction();
         session.save(t);
         session.getTransaction().commit();
@@ -22,7 +22,7 @@ public class TurmaDAO extends Manager{
     public List<Turma> getAll(){     
     	
     	List<Turma> t;	
-    	Session session = sessionFactory.openSession();
+    	Session session = this.getSessionFactory().openSession();
     	
         Query Turma = session.createQuery("from Turma");
         t= Turma.getResultList();
@@ -31,7 +31,7 @@ public class TurmaDAO extends Manager{
 	}
  
     protected Turma read(String codigo) {
-    	Session session = sessionFactory.openSession();  
+    	Session session = this.getSessionFactory().openSession();  
 	    
 	    Turma t = session.get(Turma.class, codigo);
 	    session.close();
@@ -44,7 +44,7 @@ public class TurmaDAO extends Manager{
         t.setAno(t.getAno());
         t.setSemestre(t.getSemestre());;
      
-        Session session = sessionFactory.openSession();
+        Session session = this.getSessionFactory().openSession();
         session.beginTransaction();
         session.update(t);
         session.getTransaction().commit();
@@ -56,7 +56,7 @@ public class TurmaDAO extends Manager{
     	Turma t = new Turma();
 	    t.setCodigo(codigo);
 	 
-	    Session session = sessionFactory.openSession();
+	    Session session = this.getSessionFactory().openSession();
 	    session.beginTransaction();
 	 
 	    session.delete(t);
