@@ -6,8 +6,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Professor;
+import model.Questao;
+import model.Assunto;
+import patternproject.FactoryDAO;
+import persistencia.Manager;
+
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
@@ -24,6 +32,7 @@ public class TelaCadastrarQuestao extends JFrame {
 	private JTextField entradaC;
 	private JTextField entradaD;
 	private JTextField entradaE;
+	private FactoryDAO<Questao> fp;
 
 	/**
 	 * Launch the application.
@@ -45,6 +54,12 @@ public class TelaCadastrarQuestao extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaCadastrarQuestao() {
+		this.fp = new FactoryDAO();
+		
+		final JComboBox comboBoxAssunto = new JComboBox();
+		
+		final JComboBox comboBoxDisciplina = new JComboBox();
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 480, 605);
@@ -64,11 +79,31 @@ public class TelaCadastrarQuestao extends JFrame {
 		btnCancelar.setBounds(74, 534, 117, 23);
 		contentPane.add(btnCancelar);
 		
+		final JComboBox comboBoxGabarito = new JComboBox();
+		comboBoxGabarito.setModel(new DefaultComboBoxModel(new String[] {"", "A", "B", "C", "D", "E"}));
+		comboBoxGabarito.setBounds(32, 419, 209, 24);
+		contentPane.add(comboBoxGabarito);
+		
+		final JComboBox comboBoxNivel = new JComboBox();
+		comboBoxNivel.setModel(new DefaultComboBoxModel(new String[] {"", "Fundamental", "Médio", "Superior"}));
+		comboBoxNivel.setBounds(253, 419, 203, 24);
+		contentPane.add(comboBoxNivel);
+		
 		//a��o salvar
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				 new TelaPrincipal().setVisible(true);
+				String[] assertivas = {entradaA.getText(), entradaB.getText(), entradaC.getText(), entradaD.getText(), entradaE.getText()};
+				
+				Questao q = new Questao();
+				q.cadastrar(saidaQuestao.getText(), (String) comboBoxNivel.getSelectedItem(), 
+						(String) comboBoxGabarito.getSelectedItem(), assertivas, ((Assunto) comboBoxAssunto.getSelectedItem()).getCodigo());
+				Manager<Questao> questaoManager = fp.getObjectDAO(q);
+				questaoManager.create();
+				questaoManager.exit();
+				
+				JOptionPane.showMessageDialog(null, "Questao cadastrada com sucesso.");
+				dispose();
 			}
 		});
 		btnSalvar.setBounds(293, 534, 117, 23);
@@ -132,26 +167,6 @@ public class TelaCadastrarQuestao extends JFrame {
 		contentPane.add(entradaE);
 		entradaE.setColumns(10);
 		
-		JRadioButton rdbtnD = new JRadioButton("D");
-		rdbtnD.setBounds(283, 422, 56, 23);
-		contentPane.add(rdbtnD);
-		
-		JRadioButton rdbtnE = new JRadioButton("E");
-		rdbtnE.setBounds(341, 422, 70, 23);
-		contentPane.add(rdbtnE);
-		
-		JRadioButton rdbtnC = new JRadioButton("C");
-		rdbtnC.setBounds(218, 422, 46, 23);
-		contentPane.add(rdbtnC);
-		
-		JRadioButton rdbtnB = new JRadioButton("B");
-		rdbtnB.setBounds(145, 422, 46, 23);
-		contentPane.add(rdbtnB);
-		
-		JRadioButton rdbtnA = new JRadioButton("A");
-		rdbtnA.setBounds(61, 422, 46, 23);
-		contentPane.add(rdbtnA);
-		
 		JLabel lblGabarito = new JLabel("Gabarito:");
 		lblGabarito.setBounds(32, 401, 89, 14);
 		contentPane.add(lblGabarito);
@@ -164,9 +179,6 @@ public class TelaCadastrarQuestao extends JFrame {
 		lblAssunto.setBounds(251, 455, 103, 15);
 		contentPane.add(lblAssunto);
 		
-		final JComboBox comboBoxAssunto = new JComboBox();
-		
-		final JComboBox comboBoxDisciplina = new JComboBox();
 		comboBoxDisciplina.setModel(new DisciplinaComboBoxModel());
 		comboBoxDisciplina.setBounds(32, 480, 209, 24);
 		comboBoxDisciplina.addActionListener(new ActionListener() {
@@ -178,5 +190,9 @@ public class TelaCadastrarQuestao extends JFrame {
 		
 		comboBoxAssunto.setBounds(249, 480, 211, 24);
 		contentPane.add(comboBoxAssunto);
+		
+		JLabel lblNvel = new JLabel("Nível:");
+		lblNvel.setBounds(253, 401, 66, 15);
+		contentPane.add(lblNvel);
 	}
 }

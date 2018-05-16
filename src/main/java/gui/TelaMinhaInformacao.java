@@ -126,7 +126,6 @@ public class TelaMinhaInformacao extends JFrame {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(entradaEmail.getText());
 				Professor professor = new Professor();
 				professor.cadastrar(entradaCpf.getText(),entradaNome.getText(),entradaEmail.getText() , entradaInstituicao.getText());
 				Manager<Professor> professorManager = fp.getObjectDAO(professor);
