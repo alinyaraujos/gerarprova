@@ -74,16 +74,16 @@ public class ProfessorDAO extends Manager{
         // code to run the program
     	
     	Professor b = new Professor();
-    	b.cadastrar("232333423", "paulo", "apaualo@jksdkjf", "UFAL");
+    	b.cadastrar("212133413", "paulo", "apaualo@jksdkjf", "UFAL");
     	
     	ProfessorDAO bm = new ProfessorDAO();
     	bm.setup();
     	bm.create(b);
-    	bm.exit();
     	
     
         for (Object p : bm.getAll()){
         	System.out.println(((Professor)p).getNome());
+        	System.out.println(((Professor)p).getCpf());
         }
         bm.exit();
     }

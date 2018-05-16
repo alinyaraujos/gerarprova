@@ -128,7 +128,12 @@ public class Questao {
 	public void setGabarito(String gabarito) {
 		this.gabarito = gabarito;
 	}
-	
-	
+
+	@Override
+	public String toString() {
+		return "Questao [codigo=" + codigo + ", enunciado=" + enunciado + ", nivel=" + nivel + ", gabarito=" + gabarito
+				+ ", assertivaA=" + assertivaA + ", assertivaB=" + assertivaB + ", assertivaC=" + assertivaC
+				+ ", assertivaD=" + assertivaD + ", assertivaE=" + assertivaE + ", codAssunto=" + codAssunto + "]";
+	}
 
 }
