@@ -57,7 +57,7 @@ public class TelaAluno extends JFrame {
 		JButton btnCadastrarAluno = new JButton("Cadastrar Aluno");
 		btnCadastrarAluno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 //new TelaCadastroAluno().setVisible(true);
+				 new TelaCadastroAluno().setVisible(true);
 			}
 		});
 		btnCadastrarAluno.setBounds(66, 242, 123, 23);
