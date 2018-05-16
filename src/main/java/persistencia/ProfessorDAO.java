@@ -39,25 +39,27 @@ public class ProfessorDAO extends Manager<Professor>{
         return p;
 	}
  
-    public Professor read(Object cpfProfessor) {
-    	String cpf = (String)cpfProfessor;
+    public Professor read(Object professor) {
+    	String cpf = ((Professor) professor).getCpf();
     	Session session = sessionFactory.openSession();  
 	    
 	    Professor p = session.get(Professor.class, cpf);
 	 
-	    System.out.println("Nome: " + p.getNome());
-	    System.out.println("Email: " + p.getEmail());
-	    System.out.println("Instituicao: " + p.getCpf());
 	    session.close();
 	    return p;
     }
  
     public void update() {
         // code to modify a professor
-     
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.update(this.professor);
+        
+        if (this.read(this.professor) != null) 
+        	session.update(this.professor);
+        else
+        	this.create();
+        
+        
         session.getTransaction().commit();
         session.close();
     }

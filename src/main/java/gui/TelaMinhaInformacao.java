@@ -13,6 +13,7 @@ import persistencia.Manager;
 import persistencia.ProfessorDAO;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -51,6 +52,7 @@ public class TelaMinhaInformacao extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 457, 342);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -96,17 +98,17 @@ public class TelaMinhaInformacao extends JFrame {
 		contentPane.add(entradaInstituicao);
 		entradaInstituicao.setColumns(10);
 		
-		//ação cancelar
+		//aï¿½ï¿½o cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaPrincipal().setVisible(true);
+				 dispose();
 			}
 		});
 		btnCancelar.setBounds(96, 258, 89, 23);
 		contentPane.add(btnCancelar);
 		
-		//ação salvar
+		//aï¿½ï¿½o salvar
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -114,10 +116,12 @@ public class TelaMinhaInformacao extends JFrame {
 				Professor professor = new Professor();
 				professor.cadastrar(entradaCpf.getText(),entradaNome.getText(),entradaEmail.getText() , entradaInstituicao.getText());
 				Manager<Professor> professorManager = fp.getObjectDAO(professor);
-				professorManager.create();
+				professorManager.update();
 				professorManager.exit();
 				
-				new TelaPrincipal().setVisible(true);
+				JOptionPane.showMessageDialog(null, "Os dados foram atualizados com sucesso.");
+				
+				dispose();
 			}
 		});
 		btnSalvar.setBounds(251, 258, 89, 23);
