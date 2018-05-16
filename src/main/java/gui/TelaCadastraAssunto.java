@@ -63,10 +63,11 @@ public class TelaCadastraAssunto extends JFrame {
 		lblDisciplina.setBounds(36, 137, 71, 14);
 		contentPane.add(lblDisciplina);
 		
-		JComboBox disciplina = new JComboBox();
-		disciplina.setBounds(36, 162, 368, 20);
-		contentPane.add(disciplina);
+		JComboBox selecaoDisciplina = new JComboBox();
+		selecaoDisciplina.setBounds(36, 162, 368, 20);
+		contentPane.add(selecaoDisciplina);
 		
+		//ação cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -76,7 +77,13 @@ public class TelaCadastraAssunto extends JFrame {
 		btnCancelar.setBounds(87, 227, 89, 23);
 		contentPane.add(btnCancelar);
 		
+		//ação botão salvar
 		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 new TelaPrincipal().setVisible(true);
+			}
+		});
 		btnSalvar.setBounds(250, 227, 89, 23);
 		contentPane.add(btnSalvar);
 	}

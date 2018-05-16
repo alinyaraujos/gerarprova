@@ -51,10 +51,17 @@ public class TelaCadastrarQuestao extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		//botão cancelar
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 new TelaPrincipal().setVisible(true);
+			}
+		});
 		btnCancelar.setBounds(102, 474, 89, 23);
 		contentPane.add(btnCancelar);
 		
+		//ação salvar
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
