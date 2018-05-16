@@ -15,10 +15,10 @@ import java.awt.event.ActionEvent;
 public class TelaMinhaInformacao extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
+	private JTextField entradaCpf;
+	private JTextField entradaNome;
+	private JTextField entradaEmail;
+	private JTextField entradaInstituicao;
 
 	/**
 	 * Launch the application.
@@ -68,39 +68,41 @@ public class TelaMinhaInformacao extends JFrame {
 		lblInstituio.setBounds(26, 181, 68, 14);
 		contentPane.add(lblInstituio);
 		
-		textField = new JTextField();
-		textField.setBounds(275, 100, 149, 20);
-		contentPane.add(textField);
-		textField.setColumns(10);
+		entradaCpf = new JTextField();
+		entradaCpf.setBounds(275, 100, 149, 20);
+		contentPane.add(entradaCpf);
+		entradaCpf.setColumns(10);
 		
-		textField_1 = new JTextField();
-		textField_1.setBounds(26, 100, 238, 20);
-		contentPane.add(textField_1);
-		textField_1.setColumns(10);
+		entradaNome = new JTextField();
+		entradaNome.setBounds(26, 100, 238, 20);
+		contentPane.add(entradaNome);
+		entradaNome.setColumns(10);
 		
-		textField_2 = new JTextField();
-		textField_2.setBounds(26, 150, 398, 20);
-		contentPane.add(textField_2);
-		textField_2.setColumns(10);
+		entradaEmail = new JTextField();
+		entradaEmail.setBounds(26, 150, 398, 20);
+		contentPane.add(entradaEmail);
+		entradaEmail.setColumns(10);
 		
-		textField_3 = new JTextField();
-		textField_3.setBounds(26, 206, 398, 20);
-		contentPane.add(textField_3);
-		textField_3.setColumns(10);
+		entradaInstituicao = new JTextField();
+		entradaInstituicao.setBounds(26, 206, 398, 20);
+		contentPane.add(entradaInstituicao);
+		entradaInstituicao.setColumns(10);
 		
+		//ação cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaMinhaInformacao().setVisible(true);
+				 new TelaPrincipal().setVisible(true);
 			}
 		});
 		btnCancelar.setBounds(96, 258, 89, 23);
 		contentPane.add(btnCancelar);
 		
+		//ação salvar
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaMinhaInformacao().setVisible(true);
+				 new TelaPrincipal().setVisible(true);
 			}
 		});
 		btnSalvar.setBounds(251, 258, 89, 23);
