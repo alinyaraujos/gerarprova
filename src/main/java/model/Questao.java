@@ -48,6 +48,7 @@ public class Questao {
 		this.codigo = codigo;
 	}
 
+	@Column(name="enunciado")
 	public String getEnunciado() {
 		return this.enunciado;
 	}
@@ -56,6 +57,7 @@ public class Questao {
 		this.enunciado = enunciado;
 	}
 
+	@Column(name="nivel")
 	public String getNivel() {
 		return this.nivel;
 	}
@@ -73,7 +75,7 @@ public class Questao {
 		this.assertivaA = assertivaA;
 	}
 
-	@Column(name="assertiva_c")
+	@Column(name="assertiva_b")
 	public String getAssertivaB() {
 		return this.assertivaB;
 	}

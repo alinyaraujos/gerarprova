@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.hibernate.query.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 
 import model.Questao;
 
@@ -29,6 +28,7 @@ public class QuestaoDAO extends Manager{
         Query professor = session.createQuery("from Questao");
         q = professor.getResultList();
         session.close();
+        
         return q;
 	}
  
@@ -87,18 +87,18 @@ public class QuestaoDAO extends Manager{
     	String[] assertivas = {"Bral", "Brel", "Bril", "Brol", "Brão"};
     	
     	Questao q = new Questao();
-    	q.cadastrar(1234, "Quem descobriu o Brasil ? Pedro Álvares Ca...", "Ensino Médio", "Assertiva A", assertivas, 1);
+    	q.cadastrar(1235, "Quem descobriu o Brasil ? Pedro Álvares Ca...", "Ensino Médio", "Assertiva A", assertivas, 1);
     	
     	String[] assertivas2 = {"Bral", "Brel", "Bril", "Brol", "Brão"};
     	
     	Questao q2 = new Questao();
-    	q2.cadastrar(4321, "Quem é o presidente do Brasil ?", "Ensino Médio", "Assertiva D", assertivas2, 2);
+    	q2.cadastrar(4325, "Quem é o presidente do Brasil ?", "Ensino Médio", "Assertiva D", assertivas2, 2);
     	
     	QuestaoDAO bm = new QuestaoDAO();
     	bm.setup();
     	bm.create(q);
     	bm.create(q2);
-    	bm.exit();
+    	//bm.exit();
     	
     
         for (Object p : bm.getAll()){

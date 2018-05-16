@@ -16,7 +16,7 @@ public class Manager {
     	        .configure() // configures settings from hibernate.cfg.xml
     	        .build();
     	try {
-    	    sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+    	    this.sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
     	} catch (Exception ex) {
     	    StandardServiceRegistryBuilder.destroy(registry);
     	}
@@ -27,7 +27,7 @@ public class Manager {
     
     protected void exit() {
         // code to close Hibernate Session factory
-    	sessionFactory.close();
+    	this.sessionFactory.close();
     }
 	
 	
