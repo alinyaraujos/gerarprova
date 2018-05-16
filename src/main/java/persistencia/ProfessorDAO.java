@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.hibernate.query.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
 import model.Professor;
 
@@ -67,6 +68,27 @@ public class ProfessorDAO extends Manager{
 	    session.delete(p);
 	 
 	    session.getTransaction().commit();
+	    
 	    session.close();	
+    	
+    }
+    
+    public static void main(String[] args) {
+        // code to run the program
+    	
+    	Professor b = new Professor();
+    	b.cadastrar("212133413", "paulo", "apaualo@jksdkjf", "UFAL");
+    	
+    	ProfessorDAO bm = new ProfessorDAO();
+    	bm.setup();
+    	bm.create(b);
+    	
+    
+        for (Object p : bm.getAll()){
+        	System.out.println(((Professor)p).getNome());
+        	System.out.println(((Professor)p).getCpf());
+        }
+        bm.exit();
+
     }
 }

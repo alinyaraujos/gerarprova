@@ -17,6 +17,7 @@
     <mapping class="model.Aluno" />
     <mapping class="model.Prova" />
     <mapping class="model.Assunto" />
-     
+    <mapping class="model.Questao" />
+
   </session-factory>
 </hibernate-configuration>

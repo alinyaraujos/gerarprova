@@ -11,6 +11,8 @@ import javax.swing.JTextPane;
 import javax.swing.JTextField;
 import javax.swing.JTable;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaTurma extends JFrame {
 
@@ -57,20 +59,42 @@ public class TelaTurma extends JFrame {
 		mostraTurmas.setBounds(37, 95, 438, 176);
 		contentPane.add(mostraTurmas);
 		
+		// botão cadastrar turma
 		JButton btnNovaTurma = new JButton("Nova Turma");
+		btnNovaTurma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 new TelaCadastraTurma().setVisible(true);
+			}
+		});
 		btnNovaTurma.setBounds(37, 305, 114, 23);
 		contentPane.add(btnNovaTurma);
 		
+		//acao editar turma
 		JButton btnEditarTurma = new JButton("Editar Turma");
+		btnEditarTurma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnEditarTurma.setBounds(200, 305, 117, 23);
 		contentPane.add(btnEditarTurma);
 		
+		//botão excluir turma
 		JButton btnExcluirTurma = new JButton("Excluir Turma");
+		btnExcluirTurma.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnExcluirTurma.setBounds(372, 305, 103, 23);
 		contentPane.add(btnExcluirTurma);
 		
-		JButton button = new JButton("<----");
-		button.setBounds(11, 389, 89, 23);
-		contentPane.add(button);
+		//tela principal
+		JButton voltar = new JButton("<----");
+		voltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 new TelaPrincipal().setVisible(true);
+			}
+		});
+		voltar.setBounds(11, 389, 89, 23);
+		contentPane.add(voltar);
 	}
 }

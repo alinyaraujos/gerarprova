@@ -37,6 +37,7 @@ public class TelaCadastraTurma extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaCadastraTurma() {
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -57,14 +58,22 @@ public class TelaCadastraTurma extends JFrame {
 		contentPane.add(entradaTurma);
 		entradaTurma.setColumns(10);
 		
+		//ação cancelar
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				 new TelaTurma().setVisible(true);
+			}
+		});
+		
 		btnCancelar.setBounds(81, 202, 89, 23);
 		contentPane.add(btnCancelar);
 		
+		//ação salvar
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				
+				 new TelaTurma().setVisible(true);
 			}
 		});
 		btnSalvar.setBounds(266, 202, 89, 23);

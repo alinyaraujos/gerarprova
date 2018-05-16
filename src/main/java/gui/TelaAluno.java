@@ -10,6 +10,8 @@ import javax.swing.JButton;
 import javax.swing.JTextPane;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class TelaAluno extends JFrame {
 
@@ -35,18 +37,29 @@ public class TelaAluno extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaAluno() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 373);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		//ação exlcuir
 		JButton btnExcluirAluno = new JButton("Excluir Aluno");
+		btnExcluirAluno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
 		btnExcluirAluno.setBounds(251, 242, 123, 23);
 		contentPane.add(btnExcluirAluno);
 		
 		JButton btnCadastrarAluno = new JButton("Cadastrar Aluno");
+		btnCadastrarAluno.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 new TelaCadastroAluno().setVisible(true);
+			}
+		});
 		btnCadastrarAluno.setBounds(66, 242, 123, 23);
 		contentPane.add(btnCadastrarAluno);
 		
@@ -54,20 +67,27 @@ public class TelaAluno extends JFrame {
 		lblMenAluno.setBounds(185, 11, 89, 14);
 		contentPane.add(lblMenAluno);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setBounds(66, 124, 308, 82);
-		contentPane.add(textPane);
-		
-		JLabel lblVisualizarAlunos = new JLabel("Visualizar Alunos: ");
-		lblVisualizarAlunos.setBounds(66, 86, 174, 14);
-		contentPane.add(lblVisualizarAlunos);
+		JTextPane mostraAlunos = new JTextPane();
+		mostraAlunos.setBounds(66, 124, 308, 82);
+		contentPane.add(mostraAlunos);
 		
 		JComboBox turmaAluno = new JComboBox();
 		turmaAluno.setBounds(66, 100, 308, 20);
 		contentPane.add(turmaAluno);
 		
+		//botão voltar
 		JButton voltar = new JButton("<<<<<<");
+		voltar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				 new TelaPrincipal().setVisible(true);
+				 
+			}
+		});
 		voltar.setBounds(10, 300, 89, 23);
 		contentPane.add(voltar);
+		
+		JLabel lblVisualizarAlunosPor = new JLabel("Visualizar alunos por turma:");
+		lblVisualizarAlunosPor.setBounds(66, 81, 179, 14);
+		contentPane.add(lblVisualizarAlunosPor);
 	}
 }
