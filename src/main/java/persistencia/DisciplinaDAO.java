@@ -6,15 +6,23 @@ import java.util.List;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 
+import model.Disciplina;
 import model.Disciplina;;
 
 
-public class DisciplinaDAO extends Manager{
- 
-    protected void create(Disciplina d) {
+public class DisciplinaDAO extends Manager<Disciplina>{
+	
+	private Disciplina disciplina;
+	
+	public DisciplinaDAO(Disciplina disciplina){
+		this.setup();
+		this.disciplina=disciplina;
+	}
+	@Override
+    public void create() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(d);
+        session.save(this.disciplina);
         session.getTransaction().commit();
         session.close();
     }
@@ -29,28 +37,26 @@ public class DisciplinaDAO extends Manager{
         return d;
 	}
  
-    protected Disciplina read(String codigo) {
+    public Disciplina read(Object c) {
+    	String codigo = (String)c;
     	Session session = sessionFactory.openSession();  
     	Disciplina d = session.get(Disciplina.class, codigo);
 	    session.close();
 	    return d;
     }
  
-    protected void update(Disciplina d) {
-        // code to modify
-        d.setCodigo(d.getCodigo());;
-        d.setNome(d.getNome());
-        d.setCpfProfessor(d.getCpfProfessor());
-     
+    public void update() {
+        // code to modify     
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.update(d);
+        session.update(this.disciplina);
         session.getTransaction().commit();
         session.close();
     }
     
-    protected void delete(String codigo) {
+    public void delete(Object c) {
         // code to remove	
+    	String codigo = (String)c;
     	Disciplina d = new Disciplina();
 	    d.setCodigo(codigo);
 	 
@@ -61,4 +67,5 @@ public class DisciplinaDAO extends Manager{
 	    session.getTransaction().commit();
 	    session.close();	
     }
+
 }

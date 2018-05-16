@@ -6,15 +6,23 @@ import java.util.List;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 
+import model.Assunto;
 import model.Prova;
 
 
-public class ProvaDAO extends Manager{
+public class ProvaDAO extends Manager<Prova>{
+	
+	private Prova prova;
+	
+	public ProvaDAO(Prova prova){
+		this.setup();
+		this.prova=prova;
+	}
  
-    protected void create(Prova p) {
+    public void create() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(p);
+        session.save(this.prova);
         session.getTransaction().commit();
         session.close();
     }
@@ -28,24 +36,26 @@ public class ProvaDAO extends Manager{
         return a;
 	}
  
-    protected Prova read(String codigo) {
+    public Prova read(Object c) {
+    	int codigo = (Integer)c;
     	Session session = sessionFactory.openSession();  
     	Prova p = session.get(Prova.class, codigo);
 	    session.close();
 	    return p;
     }
  
-    protected void update(Prova p) {
+    public void update() {
         // code to modify     
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.update(p);
+        session.update(this.prova);
         session.getTransaction().commit();
         session.close();
     }
     
-    protected void delete(int codigo) {
+    public void delete(Object c) {
         // code to remove	
+    	int codigo = (Integer)c;
     	Prova p = new Prova();
 	    p.setCodigo(codigo);
 	 

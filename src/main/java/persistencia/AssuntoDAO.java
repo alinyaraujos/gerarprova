@@ -5,18 +5,26 @@ import java.util.List;
 
 import org.hibernate.query.Query;
 
+import model.Aluno;
 import model.Assunto;
 import model.Disciplina;
 
 import org.hibernate.Session;
 
 
-public class AssuntoDAO extends Manager{
- 
-    protected void create(Assunto a) {
+public class AssuntoDAO extends Manager<Assunto>{
+	
+	private Assunto assunto;
+	
+	public AssuntoDAO(Assunto assunto){
+		this.setup();
+		this.assunto=assunto;
+	}
+	
+    public void create() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(a);
+        session.save(this.assunto);
         session.getTransaction().commit();
         session.close();
     }
@@ -30,23 +38,25 @@ public class AssuntoDAO extends Manager{
         return a;
 	}
  
-    protected Assunto read(String matricula) {
+    public Assunto read(Object m) {
+    	int matricula = (Integer) m;
     	Session session = sessionFactory.openSession();  
     	Assunto a = session.get(Assunto.class, matricula);
 	    session.close();
 	    return a;
     }
  
-    protected void update(Assunto a) {
+    public void update() {
         // code to modify     
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.update(a);
+        session.update(this.assunto);
         session.getTransaction().commit();
         session.close();
     }
     
-    protected void delete(int codigo) {
+    public void delete(Object c) {
+    	int codigo = (Integer) c;
         // code to remove	
     	Assunto a = new Assunto();
 	    a.setCodigo(codigo);

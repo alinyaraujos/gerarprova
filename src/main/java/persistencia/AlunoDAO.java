@@ -9,12 +9,20 @@ import org.hibernate.Session;
 import model.Aluno;
 
 
-public class AlunoDAO extends Manager{
+public class AlunoDAO extends Manager<Aluno>{
  
-    protected void create(Aluno a) {
+	
+	private Aluno aluno;
+	
+	public AlunoDAO(Aluno aluno){
+		this.setup();
+		this.aluno=aluno;
+	}
+	
+    public void create() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(a);
+        session.save(this.aluno);
         session.getTransaction().commit();
         session.close();
     }
@@ -28,23 +36,25 @@ public class AlunoDAO extends Manager{
         return a;
 	}
  
-    protected Aluno read(String matricula) {
+    public Aluno read(Object m) {
+    	int matricula = (Integer) m;
     	Session session = sessionFactory.openSession();  
     	Aluno a = session.get(Aluno.class, matricula);
 	    session.close();
 	    return a;
     }
  
-    protected void update(Aluno a) {
+    public void update() {
         // code to modify     
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.update(a);
+        session.update(this.aluno);
         session.getTransaction().commit();
         session.close();
     }
     
-    protected void delete(int matricula) {
+    public void delete(Object m) {
+    	int matricula = (Integer) m;
         // code to remove	
     	Aluno a = new Aluno();
 	    a.setMatricula(matricula);

@@ -6,6 +6,12 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Professor;
+import patternproject.FactoryDAO;
+import persistencia.Manager;
+import persistencia.ProfessorDAO;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
@@ -19,6 +25,7 @@ public class TelaMinhaInformacao extends JFrame {
 	private JTextField entradaNome;
 	private JTextField entradaEmail;
 	private JTextField entradaInstituicao;
+	private FactoryDAO<Professor> fp;
 
 	/**
 	 * Launch the application.
@@ -40,6 +47,7 @@ public class TelaMinhaInformacao extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaMinhaInformacao() {
+		this.fp = new FactoryDAO();
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 457, 342);
@@ -102,7 +110,14 @@ public class TelaMinhaInformacao extends JFrame {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaPrincipal().setVisible(true);
+				System.out.println(entradaEmail.getText());
+				Professor professor = new Professor();
+				professor.cadastrar(entradaCpf.getText(),entradaNome.getText(),entradaEmail.getText() , entradaInstituicao.getText());
+				Manager<Professor> professorManager = fp.getObjectDAO(professor);
+				professorManager.create();
+				professorManager.exit();
+				
+				new TelaPrincipal().setVisible(true);
 			}
 		});
 		btnSalvar.setBounds(251, 258, 89, 23);

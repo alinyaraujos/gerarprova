@@ -7,15 +7,23 @@ import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
+import model.Assunto;
 import model.Professor;
 
 
-public class ProfessorDAO extends Manager{
- 
-    protected void create(Professor p) {
+public class ProfessorDAO extends Manager<Professor>{
+	
+	private Professor professor;
+	
+	public ProfessorDAO(Professor professor) {
+		this.setup();
+		this.professor=professor;
+	}
+	
+    public void create() {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.save(p);
+        session.save(this.professor);
         session.getTransaction().commit();
         session.close();
     }
@@ -31,7 +39,8 @@ public class ProfessorDAO extends Manager{
         return p;
 	}
  
-    protected Professor read(String cpf) {
+    public Professor read(Object cpfProfessor) {
+    	String cpf = (String)cpfProfessor;
     	Session session = sessionFactory.openSession();  
 	    
 	    Professor p = session.get(Professor.class, cpf);
@@ -43,22 +52,19 @@ public class ProfessorDAO extends Manager{
 	    return p;
     }
  
-    protected void update(Professor p) {
+    public void update() {
         // code to modify a professor
-        p.setCpf(p.getCpf());
-        p.setNome(p.getNome());
-        p.setEmail(p.getEmail());
-        p.setInstituicao(p.getInstituicao());
      
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-        session.update(p);
+        session.update(this.professor);
         session.getTransaction().commit();
         session.close();
     }
     
-    protected void delete(String cpf) {
+    public void delete(Object cpfProfessor) {
         // code to remove	
+    	String cpf = (String)cpfProfessor;
     	Professor p = new Professor();
 	    p.setCpf(cpf);
 	 
@@ -71,24 +77,5 @@ public class ProfessorDAO extends Manager{
 	    
 	    session.close();	
     	
-    }
-    
-    public static void main(String[] args) {
-        // code to run the program
-    	
-    	Professor b = new Professor();
-    	b.cadastrar("212133413", "paulo", "apaualo@jksdkjf", "UFAL");
-    	
-    	ProfessorDAO bm = new ProfessorDAO();
-    	bm.setup();
-    	bm.create(b);
-    	
-    
-        for (Object p : bm.getAll()){
-        	System.out.println(((Professor)p).getNome());
-        	System.out.println(((Professor)p).getCpf());
-        }
-        bm.exit();
-
     }
 }
