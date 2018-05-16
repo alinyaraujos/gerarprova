@@ -49,4 +49,9 @@ public class Assunto {
 	public void setCodDisciplina(String codDisciplina) {
 		this.codDisciplina = codDisciplina;
 	}
+	
+	@Override
+	public String toString() {
+		return this.nome;
+	}
 }

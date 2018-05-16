@@ -71,7 +71,7 @@ public class TelaMinhaInformacao extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblInformaesPessoais = new JLabel("Informa\u00E7\u00F5es Pessoais");
-		lblInformaesPessoais.setBounds(151, 30, 113, 14);
+		lblInformaesPessoais.setBounds(135, 31, 170, 14);
 		contentPane.add(lblInformaesPessoais);
 		
 		JLabel lblNome = new JLabel("Nome:");
@@ -83,11 +83,11 @@ public class TelaMinhaInformacao extends JFrame {
 		contentPane.add(lblCpf);
 		
 		JLabel lblEmail = new JLabel("E-mail:");
-		lblEmail.setBounds(26, 131, 46, 14);
+		lblEmail.setBounds(26, 131, 89, 14);
 		contentPane.add(lblEmail);
 		
 		JLabel lblInstituio = new JLabel("Institui\u00E7\u00E3o:");
-		lblInstituio.setBounds(26, 181, 68, 14);
+		lblInstituio.setBounds(26, 181, 117, 14);
 		contentPane.add(lblInstituio);
 		
 		entradaCpf = new JTextField(p.getCpf());
@@ -119,7 +119,7 @@ public class TelaMinhaInformacao extends JFrame {
 				 dispose();
 			}
 		});
-		btnCancelar.setBounds(96, 258, 89, 23);
+		btnCancelar.setBounds(96, 258, 117, 23);
 		contentPane.add(btnCancelar);
 		
 		//a��o salvar
@@ -138,7 +138,7 @@ public class TelaMinhaInformacao extends JFrame {
 				dispose();
 			}
 		});
-		btnSalvar.setBounds(251, 258, 89, 23);
+		btnSalvar.setBounds(251, 258, 117, 23);
 		contentPane.add(btnSalvar);
 	}
 }

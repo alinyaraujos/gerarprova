@@ -30,7 +30,7 @@ public class DisciplinaDAO extends Manager<Disciplina>{
     	
     	List<Disciplina> d;	
     	Session session = sessionFactory.openSession();
-        Query disciplina = session.createQuery("from Professor");
+        Query disciplina = session.createQuery("from Disciplina");
         d= disciplina.getResultList();
         session.close();
         return d;

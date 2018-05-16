@@ -37,6 +37,16 @@ public class AssuntoDAO extends Manager<Assunto>{
         session.close();
         return a;
 	}
+    
+    public List<Assunto> getByDisciplina(Disciplina d){     	
+    	List<Assunto> a;	
+    	Session session = sessionFactory.openSession();
+        Query assunto = session.createQuery("from Assunto where cod_disciplina = :cod").setParameter("cod", d.getCodigo());
+        a = assunto.getResultList();
+        session.close();
+        
+        return a;
+	}
  
     public Assunto read(Object m) {
     	int matricula = (Integer) m;

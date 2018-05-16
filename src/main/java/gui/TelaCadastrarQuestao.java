@@ -12,6 +12,8 @@ import javax.swing.JTextField;
 import javax.swing.JRadioButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 
 public class TelaCadastrarQuestao extends JFrame {
 
@@ -45,43 +47,44 @@ public class TelaCadastrarQuestao extends JFrame {
 	public TelaCadastrarQuestao() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 554);
+		setBounds(100, 100, 480, 605);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		//botão cancelar
+		//botï¿½o cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaPrincipal().setVisible(true);
+				 dispose();
 			}
 		});
-		btnCancelar.setBounds(102, 474, 89, 23);
+		btnCancelar.setBounds(74, 534, 117, 23);
 		contentPane.add(btnCancelar);
 		
-		//ação salvar
+		//aï¿½ï¿½o salvar
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				 new TelaPrincipal().setVisible(true);
 			}
 		});
-		btnSalvar.setBounds(231, 474, 89, 23);
+		btnSalvar.setBounds(293, 534, 117, 23);
 		contentPane.add(btnSalvar);
 		
 		JLabel lblCadastroDeQuestes = new JLabel("Cadastro de Quest\u00F5es");
-		lblCadastroDeQuestes.setBounds(151, 36, 113, 14);
+		lblCadastroDeQuestes.setBounds(163, 34, 169, 14);
 		contentPane.add(lblCadastroDeQuestes);
 		
 		saidaQuestao = new JTextField();
-		saidaQuestao.setBounds(32, 99, 377, 49);
+		saidaQuestao.setBounds(32, 99, 424, 49);
 		contentPane.add(saidaQuestao);
 		saidaQuestao.setColumns(10);
 		
 		JLabel lblEnunciado = new JLabel("Enunciado:");
-		lblEnunciado.setBounds(32, 74, 70, 14);
+		lblEnunciado.setBounds(32, 74, 135, 14);
 		contentPane.add(lblEnunciado);
 		
 		JLabel lblA = new JLabel("A)");
@@ -89,7 +92,7 @@ public class TelaCadastrarQuestao extends JFrame {
 		contentPane.add(lblA);
 		
 		entradaA = new JTextField();
-		entradaA.setBounds(32, 185, 377, 20);
+		entradaA.setBounds(32, 185, 424, 20);
 		contentPane.add(entradaA);
 		entradaA.setColumns(10);
 		
@@ -98,7 +101,7 @@ public class TelaCadastrarQuestao extends JFrame {
 		contentPane.add(lblB);
 		
 		entradaB = new JTextField();
-		entradaB.setBounds(32, 233, 377, 20);
+		entradaB.setBounds(32, 233, 424, 20);
 		contentPane.add(entradaB);
 		entradaB.setColumns(10);
 		
@@ -107,7 +110,7 @@ public class TelaCadastrarQuestao extends JFrame {
 		contentPane.add(lblC);
 		
 		entradaC = new JTextField();
-		entradaC.setBounds(32, 278, 378, 20);
+		entradaC.setBounds(32, 278, 424, 20);
 		contentPane.add(entradaC);
 		entradaC.setColumns(10);
 		
@@ -116,7 +119,7 @@ public class TelaCadastrarQuestao extends JFrame {
 		contentPane.add(lblD);
 		
 		entradaD = new JTextField();
-		entradaD.setBounds(32, 331, 377, 20);
+		entradaD.setBounds(32, 331, 424, 20);
 		contentPane.add(entradaD);
 		entradaD.setColumns(10);
 		
@@ -125,7 +128,7 @@ public class TelaCadastrarQuestao extends JFrame {
 		contentPane.add(lblE);
 		
 		entradaE = new JTextField();
-		entradaE.setBounds(31, 376, 378, 20);
+		entradaE.setBounds(31, 376, 424, 20);
 		contentPane.add(entradaE);
 		entradaE.setColumns(10);
 		
@@ -150,7 +153,30 @@ public class TelaCadastrarQuestao extends JFrame {
 		contentPane.add(rdbtnA);
 		
 		JLabel lblGabarito = new JLabel("Gabarito:");
-		lblGabarito.setBounds(32, 401, 46, 14);
+		lblGabarito.setBounds(32, 401, 89, 14);
 		contentPane.add(lblGabarito);
+		
+		JLabel lblDisciplina = new JLabel("Disciplina:");
+		lblDisciplina.setBounds(32, 453, 89, 15);
+		contentPane.add(lblDisciplina);
+		
+		JLabel lblAssunto = new JLabel("Assunto:");
+		lblAssunto.setBounds(251, 455, 103, 15);
+		contentPane.add(lblAssunto);
+		
+		final JComboBox comboBoxAssunto = new JComboBox();
+		
+		final JComboBox comboBoxDisciplina = new JComboBox();
+		comboBoxDisciplina.setModel(new DisciplinaComboBoxModel());
+		comboBoxDisciplina.setBounds(32, 480, 209, 24);
+		comboBoxDisciplina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				comboBoxAssunto.setModel(new AssuntoComboBoxModel(comboBoxDisciplina.getSelectedItem()));
+			}
+		});
+		contentPane.add(comboBoxDisciplina);
+		
+		comboBoxAssunto.setBounds(249, 480, 211, 24);
+		contentPane.add(comboBoxAssunto);
 	}
 }

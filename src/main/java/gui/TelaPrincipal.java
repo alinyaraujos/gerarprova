@@ -52,7 +52,7 @@ public class TelaPrincipal extends JFrame {
 				 new TelaGeraProva().setVisible(true);
 			}
 		});
-		btnGerarProva.setBounds(169, 216, 101, 23);
+		btnGerarProva.setBounds(162, 218, 145, 23);
 		contentPane.add(btnGerarProva);
 		
 		//a��o minha informa��o
@@ -62,7 +62,7 @@ public class TelaPrincipal extends JFrame {
 				 new TelaMinhaInformacao().setVisible(true);
 			}
 		});
-		btnMinhasInformaes.setBounds(27, 99, 158, 23);
+		btnMinhasInformaes.setBounds(12, 99, 178, 23);
 		contentPane.add(btnMinhasInformaes);
 		
 		// a��o Turmas
@@ -72,7 +72,7 @@ public class TelaPrincipal extends JFrame {
 				 new TelaTurma().setVisible(true);
 			}
 		});
-		btnTurmas.setBounds(27, 133, 158, 23);
+		btnTurmas.setBounds(12, 134, 178, 23);
 		contentPane.add(btnTurmas);
 		
 		//A��o alunos
@@ -82,7 +82,7 @@ public class TelaPrincipal extends JFrame {
 				 new TelaAluno().setVisible(true);
 			}
 		});
-		btnAlunos.setBounds(27, 167, 158, 23);
+		btnAlunos.setBounds(12, 169, 178, 23);
 		contentPane.add(btnAlunos);
 		
 		//A��o disciplina
@@ -92,7 +92,7 @@ public class TelaPrincipal extends JFrame {
 				 new TelaDisciplina().setVisible(true);
 			}
 		});
-		btnDisciplinas.setBounds(252, 99, 158, 23);
+		btnDisciplinas.setBounds(252, 99, 178, 23);
 		contentPane.add(btnDisciplinas);
 		
 		//A��o assuntos
@@ -102,7 +102,7 @@ public class TelaPrincipal extends JFrame {
 				 new TelaCadastraAssunto().setVisible(true);
 			}
 		});
-		btnAssuntos.setBounds(252, 133, 158, 23);
+		btnAssuntos.setBounds(252, 133, 178, 23);
 		contentPane.add(btnAssuntos);
 		
 		// a��o quest�es
@@ -112,7 +112,7 @@ public class TelaPrincipal extends JFrame {
 				 new TelaCadastrarQuestao().setVisible(true);
 			}
 		});
-		btnQuestes.setBounds(252, 167, 158, 23);
+		btnQuestes.setBounds(252, 167, 178, 23);
 		contentPane.add(btnQuestes);
 		
 		JLabel lblGeraprova = new JLabel("GeraProva");
