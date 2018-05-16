@@ -55,14 +55,12 @@ public class ProfessorDAO extends Manager<Professor>{
 
         session.beginTransaction();
         
-        if (this.read(this.professor) != null) 
+        if (this.getAll().size() > 0) {
         	session.update(this.professor);
-        else
+        	session.getTransaction().commit();
+        	session.close();
+        } else
         	this.create();
-        
-        
-        session.getTransaction().commit();
-        session.close();
     }
     
     public void delete(Object cpfProfessor) {

@@ -17,6 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 
 public class TelaMinhaInformacao extends JFrame {
@@ -49,6 +50,17 @@ public class TelaMinhaInformacao extends JFrame {
 	 */
 	public TelaMinhaInformacao() {
 		this.fp = new FactoryDAO();
+		List<Professor> professores;
+		Professor p = new Professor();
+		
+		Manager<Professor> professorManager = fp.getObjectDAO(p);
+		
+		professores = professorManager.getAll();
+		
+		if (professores.size() > 0)
+			p = professores.get(0);
+		
+		professorManager.exit();
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 457, 342);
@@ -78,22 +90,24 @@ public class TelaMinhaInformacao extends JFrame {
 		lblInstituio.setBounds(26, 181, 68, 14);
 		contentPane.add(lblInstituio);
 		
-		entradaCpf = new JTextField();
+		entradaCpf = new JTextField(p.getCpf());
 		entradaCpf.setBounds(275, 100, 149, 20);
+		if (p.getCpf() != null)
+			entradaCpf.setEditable(false);
 		contentPane.add(entradaCpf);
 		entradaCpf.setColumns(10);
 		
-		entradaNome = new JTextField();
+		entradaNome = new JTextField(p.getNome());
 		entradaNome.setBounds(26, 100, 238, 20);
 		contentPane.add(entradaNome);
 		entradaNome.setColumns(10);
 		
-		entradaEmail = new JTextField();
+		entradaEmail = new JTextField(p.getEmail());
 		entradaEmail.setBounds(26, 150, 398, 20);
 		contentPane.add(entradaEmail);
 		entradaEmail.setColumns(10);
 		
-		entradaInstituicao = new JTextField();
+		entradaInstituicao = new JTextField(p.getInstituicao());
 		entradaInstituicao.setBounds(26, 206, 398, 20);
 		contentPane.add(entradaInstituicao);
 		entradaInstituicao.setColumns(10);
