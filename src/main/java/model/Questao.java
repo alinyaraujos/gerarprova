@@ -41,7 +41,7 @@ public class Questao {
 	@Id
 	@Column(name="codigo")
 	public int getCodigo() {
-		return codigo;
+		return this.codigo;
 	}
 
 	public void setCodigo(int codigo) {
@@ -49,7 +49,7 @@ public class Questao {
 	}
 
 	public String getEnunciado() {
-		return enunciado;
+		return this.enunciado;
 	}
 
 	public void setEnunciado(String enunciado) {
@@ -57,7 +57,7 @@ public class Questao {
 	}
 
 	public String getNivel() {
-		return nivel;
+		return this.nivel;
 	}
 
 	public void setNivel(String nivel) {
@@ -66,7 +66,7 @@ public class Questao {
 
 	@Column(name="assertiva_a")
 	public String getAssertivaA() {
-		return assertivaA;
+		return this.assertivaA;
 	}
 
 	public void setAssertivaA(String assertivaA) {
@@ -75,7 +75,7 @@ public class Questao {
 
 	@Column(name="assertiva_c")
 	public String getAssertivaB() {
-		return assertivaB;
+		return this.assertivaB;
 	}
 
 	public void setAssertivaB(String assertivaB) {
@@ -84,7 +84,7 @@ public class Questao {
 	
 	@Column(name="assertiva_c")
 	public String getAssertivaC() {
-		return assertivaC;
+		return this.assertivaC;
 	}
 
 	public void setAssertivaC(String assertivaC) {
@@ -93,7 +93,7 @@ public class Questao {
 
 	@Column(name="assertiva_d")
 	public String getAssertivaD() {
-		return assertivaD;
+		return this.assertivaD;
 	}
 
 	public void setAssertivaD(String assertivaD) {
@@ -102,7 +102,7 @@ public class Questao {
 
 	@Column(name="assertiva_e")
 	public String getAssertivaE() {
-		return assertivaE;
+		return this.assertivaE;
 	}
 
 	public void setAssertivaE(String assertivaE) {
@@ -111,11 +111,22 @@ public class Questao {
 
 	@Column(name="cod_assunto")
 	public int getCodAssunto() {
-		return codAssunto;
+		return this.codAssunto;
 	}
 
 	public void setCodAssunto(int codAssunto) {
 		this.codAssunto = codAssunto;
 	}
+
+	@Column(name="gabarito")
+	public String getGabarito() {
+		return this.gabarito;
+	}
+
+	public void setGabarito(String gabarito) {
+		this.gabarito = gabarito;
+	}
+	
+	
 
 }
