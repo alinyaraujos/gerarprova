@@ -12,6 +12,11 @@
     <property name="show_sql">true</property>
         
     <mapping class="model.Professor" />
+    <mapping class="model.Turma" />
+    <mapping class="model.Disciplina" />
+    <mapping class="model.Aluno" />
+    <mapping class="model.Prova" />
+    <mapping class="model.Assunto" />
      
   </session-factory>
 </hibernate-configuration>

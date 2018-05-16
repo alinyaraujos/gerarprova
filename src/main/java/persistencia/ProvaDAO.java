@@ -6,12 +6,12 @@ import java.util.List;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 
-import model.Professor;
+import model.Prova;
 
 
-public class ProfessorDAO extends Manager{
+public class ProvaDAO extends Manager{
  
-    protected void create(Professor p) {
+    protected void create(Prova p) {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(p);
@@ -19,36 +19,24 @@ public class ProfessorDAO extends Manager{
         session.close();
     }
     
-    public List<Professor> getAll(){     
-    	
-    	List<Professor> p;	
+    public List<Prova> getAll(){     	
+    	List<Prova> a;	
     	Session session = sessionFactory.openSession();
-    	
-        Query professor = session.createQuery("from Professor");
-        p= professor.getResultList();
+        Query Prova = session.createQuery("from Prova");
+        a= Prova.getResultList();
         session.close();
-        return p;
+        return a;
 	}
  
-    protected Professor read(String cpf) {
+    protected Prova read(String codigo) {
     	Session session = sessionFactory.openSession();  
-	    
-	    Professor p = session.get(Professor.class, cpf);
-	 
-	    System.out.println("Nome: " + p.getNome());
-	    System.out.println("Email: " + p.getEmail());
-	    System.out.println("Instituicao: " + p.getCpf());
+    	Prova p = session.get(Prova.class, codigo);
 	    session.close();
 	    return p;
     }
  
-    protected void update(Professor p) {
-        // code to modify a professor
-        p.setCpf(p.getCpf());
-        p.setNome(p.getNome());
-        p.setEmail(p.getEmail());
-        p.setInstituicao(p.getInstituicao());
-     
+    protected void update(Prova p) {
+        // code to modify     
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(p);
@@ -56,17 +44,33 @@ public class ProfessorDAO extends Manager{
         session.close();
     }
     
-    protected void delete(String cpf) {
+    protected void delete(int codigo) {
         // code to remove	
-    	Professor p = new Professor();
-	    p.setCpf(cpf);
+    	Prova p = new Prova();
+	    p.setCodigo(codigo);
 	 
 	    Session session = sessionFactory.openSession();
 	    session.beginTransaction();
 	 
 	    session.delete(p);
-	 
 	    session.getTransaction().commit();
 	    session.close();	
     }
+    
+    
+    public static void main(String[] args) {
+        // code to run the program
+    	
+    	Prova b = new Prova();
+    	b.cadastrar(22234, "sdfdsf", "2013.INFO-T", null);
+    	
+    	ProvaDAO bm = new ProvaDAO();
+    	bm.setup();
+    	bm.create(b);
+    	//bm.exit();
+        
+        bm.exit();
+    }
+    
+    
 }
