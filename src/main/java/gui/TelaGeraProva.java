@@ -12,6 +12,7 @@ import model.Assunto;
 import model.GeraProva;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -93,13 +94,30 @@ public class TelaGeraProva extends JFrame {
 
 		
 		//ação salvar
+		try {
+			
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				GeraProva gp = new GeraProva();
-				int num = Integer.parseInt(numeroQuestao.getText());
-				gp.geraPdf(num, ((Assunto) selecaoAssunto.getSelectedItem()));
-				 new TelaPrincipal().setVisible(true);
+				try{
+					GeraProva gp = new GeraProva();
+					int num = Integer.parseInt(numeroQuestao.getText());
+				
+					boolean gerarProva = gp.geraPdf(num, ((Assunto) selecaoAssunto.getSelectedItem()));
+					System.out.println(gerarProva);
+					if(gerarProva) {
+						JOptionPane.showMessageDialog(null, "Prova gerada com sucesso!");
+						dispose();
+					}else {
+						JOptionPane.showMessageDialog(null, "Quantidade de questões não existem cadastrada no banco");
+					}
+					
+				}catch (Exception exception) {
+					System.out.println(exception.getMessage());
+				}
 			}
 		});
 		btnSalvar.setBounds(267, 287, 89, 23);
