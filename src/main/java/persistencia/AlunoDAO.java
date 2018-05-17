@@ -22,17 +22,12 @@ public class AlunoDAO extends Manager<Aluno>{
 	}
 	
     public boolean create() {
-        try {
     	Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(this.aluno);
         session.getTransaction().commit();
         session.close();
         return true;
-        }catch(Exception e){
-        	JOptionPane.showMessageDialog(null, "erro ao salvar");
-        	return false;
-        } 
     }
     
     public List<Aluno> getAll(){     	
@@ -47,32 +42,23 @@ public class AlunoDAO extends Manager<Aluno>{
     public Aluno read(Object m) {
     	int matricula = (Integer) m;
     	Aluno a = null;
-    	try {
+    
     	Session session = sessionFactory.openSession();  
     	a = session.get(Aluno.class, matricula);
 	    session.close();
 	    return a;
-    	}catch(Exception e) {
-    		JOptionPane.showMessageDialog(null, "erro de leitura");
-    	}finally {
-    		return a;
-    	}
+    	
     	
     }
  
-    public boolean update() {
+    public void update() {
         // code to modify  
-    	try {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(this.aluno);
         session.getTransaction().commit();
         session.close();
-        return true;
-    	}catch(Exception e){
-        	JOptionPane.showMessageDialog(null, "erro ao modificar!");
-        	return false;
-        } 
+      
     }
     
     public boolean delete(Object m) {
@@ -89,10 +75,9 @@ public class AlunoDAO extends Manager<Aluno>{
 	    session.getTransaction().commit();
 	    session.close();
 	    return true;
-    	}catch(Exception e){
-        	JOptionPane.showMessageDialog(null, "erro deletar");
-        	return false;
-        } 
+	    }catch(Exception ex) {
+	    	return false;
+	    }
     }
 
 }

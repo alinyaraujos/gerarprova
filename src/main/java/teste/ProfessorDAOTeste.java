@@ -12,70 +12,57 @@ import model.Professor;
 import persistencia.ProfessorDAO;
 
 public class ProfessorDAOTeste {
-	Professor professor = new Professor();
+	Professor professor;
+	ProfessorDAO dao;
 	
 	@Before
-	public void setUp() throws Exception {
-		
+	public void setUp(){
+		professor = new Professor();
+		professor.cadastrar("CPFDOCARA","nome", "email", "instituicao");
+		dao = new ProfessorDAO(professor);
 	}
 	
 	
-	/*
-	 testCreate está sendo usado para verificar se houve algum problema durante o ato de
-	 salvar os dados referentes ao professor no banco de dados;  
-	 */
+	//funcionou
 	@Test
 	@Ignore
 	public void testCreate() {
-		
-		
-		professor.cadastrar("cccc", "nome","e-mail", "instituicao");
-		ProfessorDAO dao = new ProfessorDAO(professor);
-		
 		if(dao.create()) {
-			JOptionPane.showMessageDialog(null, "funcionou!");
+			System.out.println("funcionou");
 		}else {
-			fail("erro, não salvou");
-		}
+			fail("erro");
+		}	
 		
 	}
 
 	@Test
 	@Ignore
 	public void testUpdate() {
-	
 		
 	}
 
-	/*
-	 Teste para deletar, funcionou, tá passando mesmo que o cpf n exista
-	 */
+	// Teste para deletar, funcionou;
 	@Test
 	public void testDelete() {
 		ProfessorDAO dao = new ProfessorDAO(professor);
-		if(dao.delete("cpf")) {
+		if(dao.delete("CPFDOCARA")) {
 			JOptionPane.showMessageDialog(null, "funcionou, o delete!");
 		}else {
 			fail("erro no delete!!");
 		}
 	}
 	
-	//rever esse teste
+	//o teste vai verificar o funcionamento , execução do metodo do método, , agora para verificar o efeito do metodo no banco de dados foi usada tecnica de depuração
+	
 	@Test
 	@Ignore
 	public void listar() {
-		
-		Professor professor = new Professor();
-		professor.cadastrar("jjjj", "nome","e-mail", "instituicao");
-		ProfessorDAO dao = new ProfessorDAO(professor);
-		
-		for(Professor p: dao.getAll()) {
-			JOptionPane.showMessageDialog(null, "Descrição: "+p.getNome());
+		try {
+			dao.getAll();			
+		}catch(Exception ex) {
+			fail("erro"+ex);
 		}
-				
-		
+					
 	}
-	
-	
 
 }

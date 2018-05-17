@@ -22,17 +22,13 @@ public class DisciplinaDAO extends Manager<Disciplina>{
 	}
 	@Override
     public boolean create() {
-        try {
+       
 		Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(this.disciplina);
         session.getTransaction().commit();
         session.close();
         return true;
-        }catch(Exception e){
-        	JOptionPane.showMessageDialog(null, "erro ao salvar");
-        	return false;
-        } 
     }
     
     public List<Disciplina> getAll(){     
@@ -53,19 +49,15 @@ public class DisciplinaDAO extends Manager<Disciplina>{
 	    return d;
     }
  
-    public boolean update() {
+    public void update() {
         // code to modify 
-    	try {
+    	
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(this.disciplina);
         session.getTransaction().commit();
         session.close();
-        return true;
-    	}catch(Exception e){
-    		JOptionPane.showMessageDialog(null, "erro ao fazer update");
-    		return false;
-    	} 
+       
     	
         
     }
@@ -76,7 +68,7 @@ public class DisciplinaDAO extends Manager<Disciplina>{
     	String codigo = (String)c;
     	Disciplina d = new Disciplina();
 	    d.setCodigo(codigo);
-	    try {
+	   try {
 	    Session session = sessionFactory.openSession();
 	    session.beginTransaction();
 	 
@@ -84,10 +76,9 @@ public class DisciplinaDAO extends Manager<Disciplina>{
 	    session.getTransaction().commit();
 	    session.close();
 	    return true;
-    	}catch(Exception e){
-    		JOptionPane.showMessageDialog(null, "erro ao deletar");
-    		return false;
-    	} 
+	   }catch(Exception ex) {
+		   return false;
+	   }
     	
     }
 

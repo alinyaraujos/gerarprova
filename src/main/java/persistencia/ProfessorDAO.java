@@ -24,7 +24,8 @@ public class ProfessorDAO extends Manager<Professor>{
 		this.professor=professor;
 	}
 	
-    public  boolean create() {
+    public boolean create() {
+    	
     	try {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
@@ -32,10 +33,11 @@ public class ProfessorDAO extends Manager<Professor>{
         session.getTransaction().commit();
         session.close();
         return true;
-    	}catch(Exception e){
-    		JOptionPane.showMessageDialog(null, "erro ao salvar");
+    	}catch(Exception ex) {
     		return false;
-    	} 
+    	}
+        
+       
     }
     
     public List<Professor> getAll(){     
@@ -59,7 +61,6 @@ public class ProfessorDAO extends Manager<Professor>{
     	Session session = sessionFactory.openSession();  
 	    
 	    Professor p = session.get(Professor.class, cpf);
-	 
 	    System.out.println("Nome: " + p.getNome());
 	    System.out.println("Email: " + p.getEmail());
 	    System.out.println("Instituicao: " + p.getCpf());
@@ -67,19 +68,13 @@ public class ProfessorDAO extends Manager<Professor>{
 	    return p;
     }
  
-    public boolean update() {
+    public void update() {
         // code to modify a professor
-    	try {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(this.professor);
         session.getTransaction().commit();
         session.close();
-        return true;
-    	}catch(Exception e){
-    		JOptionPane.showMessageDialog(null, "erro ao fazer update");
-    		return false;
-    	} 
     	
     }
     
@@ -90,20 +85,16 @@ public class ProfessorDAO extends Manager<Professor>{
     	Professor p = new Professor();
 	    p.setCpf(cpf);
 	   
-	    try {
+	   try {
 	    Session session = sessionFactory.openSession();
 	    session.beginTransaction();
-	 
 	    session.delete(p);
-	 
 	    session.getTransaction().commit();
-	    
-	    session.close();	
+	    session.close();
 	    return true;
-    	}catch(Exception e){
-    		JOptionPane.showMessageDialog(null, "erro ao deletar");
-    		return false;
-    	}  
+	   }catch(Exception ex) {
+		   return false;
+	   }
     	
     }
 }

@@ -24,17 +24,13 @@ public class AssuntoDAO extends Manager<Assunto>{
 	}
 	
     public boolean create() {
-        try {
+        
     	Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(this.assunto);
         session.getTransaction().commit();
         session.close();
-        return true;
-        }catch(Exception e){
-        	JOptionPane.showMessageDialog(null, "erro ao salvar");
-        	return false;
-        } 
+      return true;
     }
     
     public List<Assunto> getAll(){     	
@@ -55,19 +51,14 @@ public class AssuntoDAO extends Manager<Assunto>{
 	    return a;
     }
  
-    public boolean update() {
-        try {
+    public void update() {
+        
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(this.assunto);
         session.getTransaction().commit();
         session.close();
-        return true;
-        }catch(Exception e){
-    		JOptionPane.showMessageDialog(null, "erro ao fazer update");
-    		return false;
-    	} 
-    	
+      
     }
     
     public boolean delete(Object c) {
@@ -84,10 +75,10 @@ public class AssuntoDAO extends Manager<Assunto>{
 	    session.getTransaction().commit();
 	    session.close();
 	    return true;
-    	}catch(Exception e){
-    		JOptionPane.showMessageDialog(null, "erro ao deletar");
-    		return false;
-    	} 
+	    }catch(Exception ex) {
+	    	return false;
+	    }
     	
-    }
+	    
+	   }
 }
