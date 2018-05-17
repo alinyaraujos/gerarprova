@@ -1,70 +1,110 @@
 package persistencia;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.hibernate.query.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 
+import model.Assunto;
 import model.Professor;
 
-
-public class ProfessorDAO extends Manager{
- 
-    protected void create(Professor p) {
+public class ProfessorDAO extends Manager<Professor>{
+	
+	private Professor professor;
+	
+	public ProfessorDAO(Professor professor) {
+		this.setup();
+		this.professor=professor;
+	}
+	
+    public boolean create() {
+    	
+    	try {
         Session session = sessionFactory.openSession();
+
         session.beginTransaction();
-        session.save(p);
+        session.save(this.professor);
         session.getTransaction().commit();
         session.close();
+        return true;
+    	}catch(Exception ex) {
+    		return false;
+    	}
+        
+       
     }
     
     public List<Professor> getAll(){     
     	
-    	List<Professor> p;
-    	
+    	List<Professor> p = null;	
+    	try {
     	Session session = sessionFactory.openSession();
-    	
         Query professor = session.createQuery("from Professor");
-        p= professor.getResultList();
+        p = professor.getResultList();
         session.close();
         return p;
+    	}catch(Exception ex) {
+    		JOptionPane.showMessageDialog(null, "Erro de sele��o");
+    	}
+		return p;
+    	
 	}
  
-    protected void read() {
+    public Professor read(Object professor) {
+    	String cpf = ((Professor) professor).getCpf();
+    	Session session = sessionFactory.openSession();  
+	    
+	    Professor p = session.get(Professor.class, cpf);
+	 
+	    session.close();
+	    return p;
+    }
+ 
+    public void update() {
+        // code to modify a professor
+
+    	try {
         Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
         
-        session.close();
-    }
- 
-    protected void update() {
-        // code to modify a book
-    	 
-    }
- 
-    protected void delete(Professor p) {
-        // code to remove a book	
-    }
-    
-    protected void delete(String cpf) {
-        // code to remove a book	
-    }
-    
-    public static void main(String[] args) {
-        // code to run the program
-    	
-    	Professor b = new Professor();
-    	b.cadastrar("232333423", "paulo", "apaualo@jksdkjf", "UFAL");
-    	
-    	ProfessorDAO bm = new ProfessorDAO();
-    	bm.setup();
-    	bm.create(b);
-    	bm.exit();
-    	
-    
-        for (Object p : bm.getAll()){
-        	System.out.println(((Professor)p).getNome());
+        if (this.getAll().size() > 0) {
+        	session.update(this.professor);
+        	session.getTransaction().commit();
+        	session.close();
+        } else {
+        	this.create();
         }
-        bm.exit();
+        
+        session.update(this.professor);
+        session.getTransaction().commit();
+        session.close();
+    	
+    }
+    
+    public boolean delete(Object cpfProfessor) {
+        // code to remove
+    	
+    	String cpf = (String)cpfProfessor;
+    	Professor p = new Professor();
+	    p.setCpf(cpf);
+	   
+	   try {
+	    Session session = sessionFactory.openSession();
+	    session.beginTransaction();
+	    session.delete(p);
+	    session.getTransaction().commit();
+	    session.close();
+	    return true;
+	   }catch(Exception ex) {
+		   return false;
+	   }
+    	
     }
 }

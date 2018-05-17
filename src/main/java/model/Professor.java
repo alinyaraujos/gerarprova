@@ -59,6 +59,11 @@ public class Professor {
 	public void setInstituicao(String instituicao) {
 		this.instituicao = instituicao;
 	}
+
+	@Override
+	public String toString() {
+		return "Professor [cpf=" + cpf + ", nome=" + nome + ", email=" + email + ", instituicao=" + instituicao + "]";
+	}
 	
 	
 
