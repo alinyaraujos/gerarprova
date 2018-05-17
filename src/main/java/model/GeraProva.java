@@ -58,13 +58,15 @@ public class GeraProva {
 					if(flag.isEmpty() || flag==null){
 						documento.add(new Paragraph((i+1)+"-"+this.listQuestoes.get(i).getEnunciado()));
 					}else {
-						documento.add(new Paragraph((i+1)+"-"+this.listQuestoes.get(i).getEnunciado()));
-						documento.add(new Paragraph("A)"+this.listQuestoes.get(i).getAssertivaA()));
-						documento.add(new Paragraph("B)"+this.listQuestoes.get(i).getAssertivaB()));
-						documento.add(new Paragraph("C)"+this.listQuestoes.get(i).getAssertivaC()));
-						documento.add(new Paragraph("D)"+this.listQuestoes.get(i).getAssertivaD()));
-						documento.add(new Paragraph("E)"+this.listQuestoes.get(i).getAssertivaE()));
+						documento.add(new Paragraph((i+1)+"- "+this.listQuestoes.get(i).getEnunciado()));
+						documento.add(new Paragraph("A) "+this.listQuestoes.get(i).getAssertivaA()));
+						documento.add(new Paragraph("B) "+this.listQuestoes.get(i).getAssertivaB()));
+						documento.add(new Paragraph("C) "+this.listQuestoes.get(i).getAssertivaC()));
+						documento.add(new Paragraph("D) "+this.listQuestoes.get(i).getAssertivaD()));
+						documento.add(new Paragraph("E) "+this.listQuestoes.get(i).getAssertivaE()));
 					}
+					
+					documento.add(new Paragraph("\n"));
 				}
 			}else{
 				return false;

@@ -69,23 +69,17 @@ public class ProfessorDAO extends Manager<Professor>{
     public void update() {
         // code to modify a professor
 
-    	try {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
-
         
         if (this.getAll().size() > 0) {
         	session.update(this.professor);
         	session.getTransaction().commit();
-        	session.close();
         } else {
         	this.create();
         }
         
-        session.update(this.professor);
-        session.getTransaction().commit();
         session.close();
-    	
     }
     
     public boolean delete(Object cpfProfessor) {

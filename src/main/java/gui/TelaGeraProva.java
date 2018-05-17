@@ -51,15 +51,16 @@ public class TelaGeraProva extends JFrame {
 		
 		
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 380);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel lblGerarProva = new JLabel("Gerar Prova");
-		lblGerarProva.setBounds(173, 36, 63, 14);
+		lblGerarProva.setBounds(173, 36, 98, 14);
 		contentPane.add(lblGerarProva);
 		
 		JLabel lblDisciplina = new JLabel("Disciplina:");
@@ -89,11 +90,11 @@ public class TelaGeraProva extends JFrame {
 		contentPane.add(lblNmeroDeQuestes);
 		
 		numeroQuestao = new JTextField();
-		numeroQuestao.setBounds(34, 223, 114, 35);
+		numeroQuestao.setBounds(34, 220, 143, 20);
 		contentPane.add(numeroQuestao);
 
 		
-		//ação salvar
+		//aï¿½ï¿½o salvar
 		try {
 			
 		}catch (Exception e) {
@@ -112,7 +113,7 @@ public class TelaGeraProva extends JFrame {
 						JOptionPane.showMessageDialog(null, "Prova gerada com sucesso!");
 						dispose();
 					}else {
-						JOptionPane.showMessageDialog(null, "Quantidade de questões não existem cadastrada no banco");
+						JOptionPane.showMessageDialog(null, "Quantidade de questï¿½es nï¿½o existem cadastrada no banco");
 					}
 					
 				}catch (Exception exception) {
@@ -120,17 +121,17 @@ public class TelaGeraProva extends JFrame {
 				}
 			}
 		});
-		btnSalvar.setBounds(267, 287, 89, 23);
+		btnSalvar.setBounds(250, 287, 120, 23);
 		contentPane.add(btnSalvar);
 		
-		//ação cancelar
+		//aï¿½ï¿½o cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 new TelaPrincipal().setVisible(true);
 			}
 		});
-		btnCancelar.setBounds(102, 287, 89, 23);
+		btnCancelar.setBounds(70, 287, 120, 23);
 		contentPane.add(btnCancelar);
 	}
 }
