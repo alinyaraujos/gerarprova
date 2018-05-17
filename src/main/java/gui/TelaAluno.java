@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class TelaAluno extends JFrame {
 
@@ -51,43 +52,43 @@ public class TelaAluno extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnExcluirAluno.setBounds(251, 242, 123, 23);
+		btnExcluirAluno.setBounds(251, 269, 160, 23);
 		contentPane.add(btnExcluirAluno);
 		
 		JButton btnCadastrarAluno = new JButton("Cadastrar Aluno");
 		btnCadastrarAluno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaCadastroAluno().setVisible(true);
+				 dispose();
 			}
 		});
-		btnCadastrarAluno.setBounds(66, 242, 123, 23);
+		btnCadastrarAluno.setBounds(32, 269, 160, 23);
 		contentPane.add(btnCadastrarAluno);
 		
-		JLabel lblMenAluno = new JLabel("Men\u00FA Aluno");
-		lblMenAluno.setBounds(185, 11, 89, 14);
+		JLabel lblMenAluno = new JLabel("Alunos");
+		lblMenAluno.setBounds(199, 12, 89, 14);
 		contentPane.add(lblMenAluno);
 		
 		JTextPane mostraAlunos = new JTextPane();
-		mostraAlunos.setBounds(66, 124, 308, 82);
+		mostraAlunos.setBounds(32, 88, 379, 169);
 		contentPane.add(mostraAlunos);
 		
 		JComboBox turmaAluno = new JComboBox();
-		turmaAluno.setBounds(66, 100, 308, 20);
+		turmaAluno.setBounds(103, 56, 308, 20);
 		contentPane.add(turmaAluno);
 		
 		//bot�o voltar
-		JButton voltar = new JButton("<<<<<<");
+		JButton voltar = new JButton("Cancelar");
+		voltar.setForeground(Color.DARK_GRAY);
 		voltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaPrincipal().setVisible(true);
-				 
+				 dispose();
 			}
 		});
-		voltar.setBounds(10, 300, 89, 23);
+		voltar.setBounds(150, 307, 160, 23);
 		contentPane.add(voltar);
 		
-		JLabel lblVisualizarAlunosPor = new JLabel("Visualizar alunos por turma:");
-		lblVisualizarAlunosPor.setBounds(66, 81, 179, 14);
+		JLabel lblVisualizarAlunosPor = new JLabel("Turma:");
+		lblVisualizarAlunosPor.setBounds(32, 59, 78, 14);
 		contentPane.add(lblVisualizarAlunosPor);
 	}
 }

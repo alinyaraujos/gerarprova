@@ -5,9 +5,15 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
+
+import model.Assunto;
+import model.GeraProva;
+
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -15,6 +21,7 @@ import java.awt.event.ActionEvent;
 public class TelaGeraProva extends JFrame {
 
 	private JPanel contentPane;
+	private JTextField numeroQuestao;
 
 	/**
 	 * Launch the application.
@@ -36,6 +43,12 @@ public class TelaGeraProva extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaGeraProva() {
+		
+		final JComboBox selecaoAssunto = new JComboBox();
+		
+		final JComboBox selecaoDisciplina = new JComboBox();
+		
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 380);
@@ -49,33 +62,43 @@ public class TelaGeraProva extends JFrame {
 		contentPane.add(lblGerarProva);
 		
 		JLabel lblDisciplina = new JLabel("Disciplina:");
-		lblDisciplina.setBounds(34, 74, 63, 14);
+		lblDisciplina.setBounds(34, 74, 127, 14);
 		contentPane.add(lblDisciplina);
 		
-		JComboBox selecaoDisciplina = new JComboBox();
+		
+		selecaoDisciplina.setModel(new DisciplinaComboBoxModel());
 		selecaoDisciplina.setBounds(34, 88, 379, 20);
+		selecaoDisciplina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				selecaoAssunto.setModel(new AssuntoComboBoxModel(selecaoDisciplina.getSelectedItem()));
+			}
+		});
+		
 		contentPane.add(selecaoDisciplina);
 		
 		JLabel lblAssunto = new JLabel("Assunto:");
-		lblAssunto.setBounds(34, 130, 46, 14);
+		lblAssunto.setBounds(34, 130, 98, 14);
 		contentPane.add(lblAssunto);
 		
-		JComboBox selecaoAssunto = new JComboBox();
 		selecaoAssunto.setBounds(34, 145, 379, 20);
 		contentPane.add(selecaoAssunto);
 		
 		JLabel lblNmeroDeQuestes = new JLabel("N\u00FAmero de Quest\u00F5es:");
-		lblNmeroDeQuestes.setBounds(34, 186, 114, 14);
+		lblNmeroDeQuestes.setBounds(34, 193, 204, 14);
 		contentPane.add(lblNmeroDeQuestes);
 		
-		JComboBox numeroQuestao = new JComboBox();
-		numeroQuestao.setBounds(34, 205, 63, 20);
+		numeroQuestao = new JTextField();
+		numeroQuestao.setBounds(34, 223, 114, 35);
 		contentPane.add(numeroQuestao);
+
 		
 		//ação salvar
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				GeraProva gp = new GeraProva();
+				int num = Integer.parseInt(numeroQuestao.getText());
+				gp.geraPdf(num, ((Assunto) selecaoAssunto.getSelectedItem()));
 				 new TelaPrincipal().setVisible(true);
 			}
 		});

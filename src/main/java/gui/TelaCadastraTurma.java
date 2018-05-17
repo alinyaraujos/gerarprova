@@ -58,22 +58,22 @@ public class TelaCadastraTurma extends JFrame {
 		contentPane.add(entradaTurma);
 		entradaTurma.setColumns(10);
 		
-		//ação cancelar
+		//aï¿½ï¿½o cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				 new TelaTurma().setVisible(true);
+				 dispose();
 			}
 		});
 		
 		btnCancelar.setBounds(81, 202, 89, 23);
 		contentPane.add(btnCancelar);
 		
-		//ação salvar
+		//aï¿½ï¿½o salvar
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				 new TelaTurma().setVisible(true);
+				 dispose();
 			}
 		});
 		btnSalvar.setBounds(266, 202, 89, 23);

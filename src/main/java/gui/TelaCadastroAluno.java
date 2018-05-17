@@ -67,21 +67,21 @@ public class TelaCadastroAluno extends JFrame {
 		lblTurma.setBounds(48, 132, 46, 14);
 		contentPane.add(lblTurma);
 		
-		//ação cancelar
+		//aï¿½ï¿½o cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaAluno().setVisible(true);
+				 dispose();
 			}
 		});
 		btnCancelar.setBounds(96, 215, 89, 23);
 		contentPane.add(btnCancelar);
 		
-		//ação salvar
+		//aï¿½ï¿½o salvar
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaAluno().setVisible(true);
+				dispose();
 			}
 		});
 		btnSalvar.setBounds(252, 215, 89, 23);

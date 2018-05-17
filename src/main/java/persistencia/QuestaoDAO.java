@@ -3,9 +3,13 @@ package persistencia;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 
+import model.Assunto;
+import model.Disciplina;
 import model.Professor;
 import model.Prova;
 import model.Questao;
@@ -15,17 +19,28 @@ public class QuestaoDAO extends Manager<Questao>{
 	
 	private Questao questao;
 	
+	public QuestaoDAO(){
+		this.setup();
+	}
+	
 	public QuestaoDAO(Questao questao){
 		this.setup();
 		this.questao=questao;
 	}
+	
  
-    public void create() {
-        Session session = sessionFactory.openSession();
+    public boolean create() {
+        try {
+    	Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(this.questao);
         session.getTransaction().commit();
         session.close();
+        return true;
+        }catch(Exception e){
+        	JOptionPane.showMessageDialog(null, "erro ao salvar");
+        	return false;
+        }
     }
     
     public List<Questao> getAll(){     
@@ -38,6 +53,16 @@ public class QuestaoDAO extends Manager<Questao>{
         q = professor.getResultList();
         session.close();
         
+        return q;
+	}
+    
+    
+    public List<Questao> getByAssunto(Assunto a){     	
+    	List<Questao> q;	
+    	Session session = sessionFactory.openSession();
+        Query questao = session.createQuery("from Questao where cod_assunto = :cod").setParameter("cod", a.getCodigo());
+        q = questao.getResultList();
+        session.close();
         return q;
 	}
  
@@ -63,7 +88,7 @@ public class QuestaoDAO extends Manager<Questao>{
     	return questions;
     }
  
-    public void update() {
+    public boolean update() {
         // code to modify a questao
     	
     	Questao qNew = this.questao;
@@ -92,21 +117,26 @@ public class QuestaoDAO extends Manager<Questao>{
         
         if (qNew.getCodAssunto() != 0)
         	q.setCodAssunto(qNew.getCodAssunto());
-        
+        try {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(q);
         session.getTransaction().commit();
         session.close();
-    	 
+        return true;
+        }catch(Exception e){
+    		JOptionPane.showMessageDialog(null, "erro ao modificar questão");
+    		return false;
+    	} 
+    	
     }
     
-    public void delete(Object c) {
+    public boolean delete(Object c) {
         // code to remove a book	
     	int codigo = (Integer)c;
     	Questao q = new Questao();
 	    q.setCodigo(codigo);
-	 
+	    try{
 	    Session session = sessionFactory.openSession();
 	    session.beginTransaction();
 	 
@@ -114,6 +144,12 @@ public class QuestaoDAO extends Manager<Questao>{
 	 
 	    session.getTransaction().commit();
 	    session.close();
+	    return true;
+		}catch(Exception e){
+    		JOptionPane.showMessageDialog(null, "Erro ao deletar");
+    		return false;
+    	} 
+    	
     	
     }
 }

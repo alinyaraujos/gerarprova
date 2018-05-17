@@ -3,6 +3,8 @@ package persistencia;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 
@@ -18,12 +20,18 @@ public class AlunoDAO extends Manager<Aluno>{
 		this.aluno=aluno;
 	}
 	
-    public void create() {
-        Session session = sessionFactory.openSession();
+    public boolean create() {
+        try {
+    	Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(this.aluno);
         session.getTransaction().commit();
         session.close();
+        return true;
+        }catch(Exception e){
+        	JOptionPane.showMessageDialog(null, "erro ao salvar");
+        	return false;
+        } 
     }
     
     public List<Aluno> getAll(){     	
@@ -37,33 +45,53 @@ public class AlunoDAO extends Manager<Aluno>{
  
     public Aluno read(Object m) {
     	int matricula = (Integer) m;
+    	Aluno a = null;
+    	try {
     	Session session = sessionFactory.openSession();  
-    	Aluno a = session.get(Aluno.class, matricula);
+    	a = session.get(Aluno.class, matricula);
 	    session.close();
 	    return a;
+    	}catch(Exception e) {
+    		JOptionPane.showMessageDialog(null, "erro de leitura");
+    	}finally {
+    		return a;
+    	}
+    	
     }
  
-    public void update() {
-        // code to modify     
+    public boolean update() {
+        // code to modify  
+    	try {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(this.aluno);
         session.getTransaction().commit();
         session.close();
+        return true;
+    	}catch(Exception e){
+        	JOptionPane.showMessageDialog(null, "erro ao modificar!");
+        	return false;
+        } 
     }
     
-    public void delete(Object m) {
+    public boolean delete(Object m) {
     	int matricula = (Integer) m;
-        // code to remove	
+        // code to remove
+    	
     	Aluno a = new Aluno();
 	    a.setMatricula(matricula);
-	 
+	    try {
 	    Session session = sessionFactory.openSession();
 	    session.beginTransaction();
-	 
+	    
 	    session.delete(a);
 	    session.getTransaction().commit();
-	    session.close();	
+	    session.close();
+	    return true;
+    	}catch(Exception e){
+        	JOptionPane.showMessageDialog(null, "erro deletar");
+        	return false;
+        } 
     }
 
 }
