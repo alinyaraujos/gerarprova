@@ -6,6 +6,8 @@ import java.util.List;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 
+import model.Assunto;
+import model.Disciplina;
 import model.Professor;
 import model.Prova;
 import model.Questao;
@@ -15,10 +17,15 @@ public class QuestaoDAO extends Manager<Questao>{
 	
 	private Questao questao;
 	
+	public QuestaoDAO(){
+		this.setup();
+	}
+	
 	public QuestaoDAO(Questao questao){
 		this.setup();
 		this.questao=questao;
 	}
+	
  
     public void create() {
         Session session = sessionFactory.openSession();
@@ -38,6 +45,16 @@ public class QuestaoDAO extends Manager<Questao>{
         q = professor.getResultList();
         session.close();
         
+        return q;
+	}
+    
+    
+    public List<Questao> getByAssunto(Assunto a){     	
+    	List<Questao> q;	
+    	Session session = sessionFactory.openSession();
+        Query questao = session.createQuery("from Questao where cod_assunto = :cod").setParameter("cod", a.getCodigo());
+        q = questao.getResultList();
+        session.close();
         return q;
 	}
  

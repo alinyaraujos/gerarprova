@@ -27,11 +27,11 @@ public class TelaCadastrarQuestao extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField saidaQuestao;
-	private JTextField entradaA;
-	private JTextField entradaB;
-	private JTextField entradaC;
-	private JTextField entradaD;
-	private JTextField entradaE;
+	private JTextField entradaA=null;
+	private JTextField entradaB=null;
+	private JTextField entradaC=null;
+	private JTextField entradaD=null;
+	private JTextField entradaE=null;
 	private FactoryDAO<Questao> fp;
 
 	/**
@@ -85,7 +85,7 @@ public class TelaCadastrarQuestao extends JFrame {
 		contentPane.add(comboBoxGabarito);
 		
 		final JComboBox comboBoxNivel = new JComboBox();
-		comboBoxNivel.setModel(new DefaultComboBoxModel(new String[] {"", "Fundamental", "Médio", "Superior"}));
+		comboBoxNivel.setModel(new DefaultComboBoxModel(new String[] {"", "Facil", "Media", "Dificil"}));
 		comboBoxNivel.setBounds(253, 419, 203, 24);
 		contentPane.add(comboBoxNivel);
 		
@@ -191,7 +191,7 @@ public class TelaCadastrarQuestao extends JFrame {
 		comboBoxAssunto.setBounds(249, 480, 211, 24);
 		contentPane.add(comboBoxAssunto);
 		
-		JLabel lblNvel = new JLabel("Nível:");
+		JLabel lblNvel = new JLabel("Nivel:");
 		lblNvel.setBounds(253, 401, 66, 15);
 		contentPane.add(lblNvel);
 	}
