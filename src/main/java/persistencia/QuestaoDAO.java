@@ -87,6 +87,15 @@ public class QuestaoDAO extends Manager<Questao>{
     	
     	return questions;
     }
+    
+    public List<Questao> getByQuestaoRand(Assunto a){     	
+    	List<Questao> q;	
+    	Session session = sessionFactory.openSession();
+        Query questao = session.createQuery("from Questao where cod_assunto = :cod ORDER BY RAND()").setParameter("cod", a.getCodigo());
+        q = questao.getResultList();
+        session.close();
+        return q;
+	}
  
     public boolean update() {
         // code to modify a questao
