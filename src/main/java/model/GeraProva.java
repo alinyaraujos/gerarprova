@@ -10,30 +10,24 @@ import com.itextpdf.text.pdf.PdfWriter;
 
 
 public class GeraProva {
-
 	Document documento = new Document();
-	
 	
 	public void geraPdf(){
 	    
 	    try {
+	    	PdfWriter.getInstance(documento, new FileOutputStream("C:\\Users\\Herbert\\Documents\\Prova.pdf"));
+	        documento.open();
 	             
-	              PdfWriter.getInstance(documento, new FileOutputStream("C:\\Users\\Herbert\\Documents\\Prova.pdf"));
-	              documento.open();
-	             
-	              // adicionando um parágrafo no documento
-	              for(int i=0;i<2;i++){
-	              documento.add(new Paragraph("1.Esse programa é muito mito, sim ou não?"));
-	              }
-	}               
-	          catch(DocumentException de) {
-	              System.err.println(de.getMessage());
-	          }catch(IOException ioe) {
-	              System.err.println(ioe.getMessage());
-	          }
-	          documento.close();   
-	    
-	    
+	        // adicionando um parï¿½grafo no documento
+	        for(int i=0;i<2;i++){
+	        	documento.add(new Paragraph("1.Esse programa ï¿½ muito mito, sim ou nï¿½o?"));
+	        }
+	    } catch(DocumentException de) {
+	    	System.err.println(de.getMessage());
+	    } catch(IOException ioe) {
+	    	System.err.println(ioe.getMessage());
 	    }
-	
+	        
+	    documento.close();
+	}
 }
