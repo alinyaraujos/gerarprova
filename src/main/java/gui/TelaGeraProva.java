@@ -100,7 +100,7 @@ public class TelaGeraProva extends JFrame {
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
-		JButton btnSalvar = new JButton("Salvar");
+		JButton btnSalvar = new JButton("Gerar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				try{
@@ -128,7 +128,7 @@ public class TelaGeraProva extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaPrincipal().setVisible(true);
+				 dispose();
 			}
 		});
 		btnCancelar.setBounds(70, 287, 120, 23);
