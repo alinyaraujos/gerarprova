@@ -14,7 +14,6 @@ import org.hibernate.SessionFactory;
 import model.Assunto;
 import model.Professor;
 
-
 public class ProfessorDAO extends Manager<Professor>{
 	
 	private Professor professor;
@@ -28,6 +27,7 @@ public class ProfessorDAO extends Manager<Professor>{
     	
     	try {
         Session session = sessionFactory.openSession();
+
         session.beginTransaction();
         session.save(this.professor);
         session.getTransaction().commit();
@@ -50,28 +50,38 @@ public class ProfessorDAO extends Manager<Professor>{
         session.close();
         return p;
     	}catch(Exception ex) {
-    		JOptionPane.showMessageDialog(null, "Erro de seleção");
+    		JOptionPane.showMessageDialog(null, "Erro de seleï¿½ï¿½o");
     	}
 		return p;
     	
 	}
  
-    public Professor read(Object cpfProfessor) {
-    	String cpf = (String)cpfProfessor;
+    public Professor read(Object professor) {
+    	String cpf = ((Professor) professor).getCpf();
     	Session session = sessionFactory.openSession();  
 	    
 	    Professor p = session.get(Professor.class, cpf);
-	    System.out.println("Nome: " + p.getNome());
-	    System.out.println("Email: " + p.getEmail());
-	    System.out.println("Instituicao: " + p.getCpf());
+	 
 	    session.close();
 	    return p;
     }
  
     public void update() {
         // code to modify a professor
+
+    	try {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
+
+        
+        if (this.getAll().size() > 0) {
+        	session.update(this.professor);
+        	session.getTransaction().commit();
+        	session.close();
+        } else {
+        	this.create();
+        }
+        
         session.update(this.professor);
         session.getTransaction().commit();
         session.close();

@@ -12,8 +12,7 @@ import model.Aluno;
 
 
 public class AlunoDAO extends Manager<Aluno>{
- 
-	
+ 	
 	private Aluno aluno;
 	
 	public AlunoDAO(Aluno aluno){

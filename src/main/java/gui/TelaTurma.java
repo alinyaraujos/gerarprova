@@ -59,7 +59,7 @@ public class TelaTurma extends JFrame {
 		mostraTurmas.setBounds(37, 95, 438, 176);
 		contentPane.add(mostraTurmas);
 		
-		// botão cadastrar turma
+		// botï¿½o cadastrar turma
 		JButton btnNovaTurma = new JButton("Nova Turma");
 		btnNovaTurma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -78,7 +78,7 @@ public class TelaTurma extends JFrame {
 		btnEditarTurma.setBounds(200, 305, 117, 23);
 		contentPane.add(btnEditarTurma);
 		
-		//botão excluir turma
+		//botï¿½o excluir turma
 		JButton btnExcluirTurma = new JButton("Excluir Turma");
 		btnExcluirTurma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -88,10 +88,10 @@ public class TelaTurma extends JFrame {
 		contentPane.add(btnExcluirTurma);
 		
 		//tela principal
-		JButton voltar = new JButton("<----");
+		JButton voltar = new JButton("Voltar");
 		voltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaPrincipal().setVisible(true);
+				 dispose();
 			}
 		});
 		voltar.setBounds(11, 389, 89, 23);

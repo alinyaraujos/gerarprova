@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import org.hibernate.query.Query;
 import org.hibernate.Session;
 
+import model.Assunto;
+import model.Disciplina;
 import model.Professor;
 import model.Prova;
 import model.Questao;
@@ -17,10 +19,15 @@ public class QuestaoDAO extends Manager<Questao>{
 	
 	private Questao questao;
 	
+	public QuestaoDAO(){
+		this.setup();
+	}
+	
 	public QuestaoDAO(Questao questao){
 		this.setup();
 		this.questao=questao;
 	}
+	
  
     public boolean create() {
      
@@ -44,9 +51,18 @@ public class QuestaoDAO extends Manager<Questao>{
         
         return q;
 	}
+    
+    
+    public List<Questao> getByAssunto(Assunto a){     	
+    	List<Questao> q;	
+    	Session session = sessionFactory.openSession();
+        Query questao = session.createQuery("from Questao where cod_assunto = :cod").setParameter("cod", a.getCodigo());
+        q = questao.getResultList();
+        session.close();
+        return q;
+	}
  
     public Questao read(Object c) {
-    	
     	int codigo = (Integer)c;
     	Session session = sessionFactory.openSession();
     	Questao q = session.get(Questao.class, codigo);
@@ -67,6 +83,15 @@ public class QuestaoDAO extends Manager<Questao>{
     	
     	return questions;
     }
+    
+    public List<Questao> getByQuestaoRand(Assunto a){     	
+    	List<Questao> q;	
+    	Session session = sessionFactory.openSession();
+        Query questao = session.createQuery("from Questao where cod_assunto = :cod ORDER BY RAND()").setParameter("cod", a.getCodigo());
+        q = questao.getResultList();
+        session.close();
+        return q;
+	}
  
     public void update() {
         // code to modify a questao
