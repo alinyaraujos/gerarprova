@@ -21,9 +21,9 @@ public abstract class Manager <T>{
  
     public abstract T read(Object codigo);
  
-    public abstract void update();
+    public abstract boolean update();
     
-    public abstract void delete(Object codigo);
+    public abstract boolean delete(Object codigo);
 	
 	
     protected void setup() {

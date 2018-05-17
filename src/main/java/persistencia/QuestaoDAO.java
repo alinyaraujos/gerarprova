@@ -29,10 +29,11 @@ public class QuestaoDAO extends Manager<Questao>{
         session.save(this.questao);
         session.getTransaction().commit();
         session.close();
+        return true;
         }catch(Exception e){
         	JOptionPane.showMessageDialog(null, "erro ao salvar");
         	return false;
-        } return true;
+        }
     }
     
     public List<Questao> getAll(){     
@@ -71,7 +72,7 @@ public class QuestaoDAO extends Manager<Questao>{
     	return questions;
     }
  
-    public void update() {
+    public boolean update() {
         // code to modify a questao
     	
     	Questao qNew = this.questao;
@@ -100,21 +101,26 @@ public class QuestaoDAO extends Manager<Questao>{
         
         if (qNew.getCodAssunto() != 0)
         	q.setCodAssunto(qNew.getCodAssunto());
-        
+        try {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(q);
         session.getTransaction().commit();
         session.close();
-    	 
+        return true;
+        }catch(Exception e){
+    		JOptionPane.showMessageDialog(null, "erro ao modificar questão");
+    		return false;
+    	} 
+    	
     }
     
-    public void delete(Object c) {
+    public boolean delete(Object c) {
         // code to remove a book	
     	int codigo = (Integer)c;
     	Questao q = new Questao();
 	    q.setCodigo(codigo);
-	 
+	    try{
 	    Session session = sessionFactory.openSession();
 	    session.beginTransaction();
 	 
@@ -122,6 +128,12 @@ public class QuestaoDAO extends Manager<Questao>{
 	 
 	    session.getTransaction().commit();
 	    session.close();
+	    return true;
+		}catch(Exception e){
+    		JOptionPane.showMessageDialog(null, "Erro ao deletar");
+    		return false;
+    	} 
+    	
     	
     }
 }

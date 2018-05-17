@@ -1,5 +1,6 @@
 package persistencia;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,10 +29,11 @@ public class TurmaDAO extends Manager<Turma>{
         session.save(this.turma);
         session.getTransaction().commit();
         session.close();
+        return true;
         }catch(Exception e){
         	JOptionPane.showMessageDialog(null, "erro ao salvar");
         	return false;
-        } return true;
+        } 
     }
     
     public List<Turma> getAll(){     
@@ -54,28 +56,38 @@ public class TurmaDAO extends Manager<Turma>{
 	    return t;
     }
  
-    public void update() {
+    public boolean update() {
         // code to modify a Turma
-     
+    	try {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(this.turma);
         session.getTransaction().commit();
         session.close();
+        return true;
+    	 }catch(Exception e){
+         	JOptionPane.showMessageDialog(null, "erro ao fazer update");
+         	return false;
+         }
     }
     
-    public void delete(Object c) {
+    public boolean delete(Object c) {
         // code to remove a Turma
     	String codigo = (String)c;
     	Turma t = new Turma();
 	    t.setCodigo(codigo);
-	 
+	    try {
 	    Session session = sessionFactory.openSession();
 	    session.beginTransaction();
 	 
 	    session.delete(t);
 	 
 	    session.getTransaction().commit();
-	    session.close();	
+	    session.close();
+	    return true;
+	    }catch(Exception e){
+        	JOptionPane.showMessageDialog(null, "erro ao Deletar turmar");
+        	return false;
+        } 
     }
 }

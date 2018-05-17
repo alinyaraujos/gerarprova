@@ -28,11 +28,11 @@ public class ProvaDAO extends Manager<Prova>{
         session.save(this.prova);
         session.getTransaction().commit();
         session.close();
-        
+        return true;
         }catch(Exception e){
         	JOptionPane.showMessageDialog(null, "erro ao salvar");
         	return false;
-        } return true;
+        } 
     }
     
     public List<Prova> getAll(){     	
@@ -52,27 +52,41 @@ public class ProvaDAO extends Manager<Prova>{
 	    return p;
     }
  
-    public void update() {
-        // code to modify     
+    public boolean update() {
+        // code to modify
+    	try {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(this.prova);
         session.getTransaction().commit();
         session.close();
+        return true;
+    	}catch(Exception e){
+    		JOptionPane.showMessageDialog(null, "erro ao fazer update");
+    		return false;
+    	} 
+    	
     }
     
-    public void delete(Object c) {
-        // code to remove	
+    public boolean delete(Object c) {
+        // code to remove
+    	
     	int codigo = (Integer)c;
     	Prova p = new Prova();
 	    p.setCodigo(codigo);
-	 
+	    try {
 	    Session session = sessionFactory.openSession();
 	    session.beginTransaction();
 	 
 	    session.delete(p);
 	    session.getTransaction().commit();
-	    session.close();	
+	    session.close();
+	    return true;
+    	}catch(Exception e){
+    		JOptionPane.showMessageDialog(null, "erro ao deletar");
+    		return false;
+    	} 
+    	
     }    
     
 }
