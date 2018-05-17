@@ -13,10 +13,12 @@ import javax.swing.JTable;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class TelaTurma extends JFrame {
 
 	private JPanel contentPane;
+	private JTable tableTurmas;
 
 	/**
 	 * Launch the application.
@@ -39,14 +41,15 @@ public class TelaTurma extends JFrame {
 	 */
 	public TelaTurma() {
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 530, 462);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel lblTelaTurma = new JLabel("Tela Turma");
+		JLabel lblTelaTurma = new JLabel("Turmas");
 		lblTelaTurma.setBounds(223, 33, 125, 14);
 		contentPane.add(lblTelaTurma);
 		
@@ -54,19 +57,14 @@ public class TelaTurma extends JFrame {
 		lblTurmas.setBounds(41, 62, 59, 14);
 		contentPane.add(lblTurmas);
 		
-		JTextPane mostraTurmas = new JTextPane();
-		mostraTurmas.setEditable(false);
-		mostraTurmas.setBounds(37, 95, 438, 176);
-		contentPane.add(mostraTurmas);
-		
-		// botão cadastrar turma
+		// botï¿½o cadastrar turma
 		JButton btnNovaTurma = new JButton("Nova Turma");
 		btnNovaTurma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				 new TelaCadastraTurma().setVisible(true);
 			}
 		});
-		btnNovaTurma.setBounds(37, 305, 114, 23);
+		btnNovaTurma.setBounds(41, 332, 130, 23);
 		contentPane.add(btnNovaTurma);
 		
 		//acao editar turma
@@ -75,26 +73,33 @@ public class TelaTurma extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnEditarTurma.setBounds(200, 305, 117, 23);
+		btnEditarTurma.setBounds(211, 332, 130, 23);
 		contentPane.add(btnEditarTurma);
 		
-		//botão excluir turma
+		//botï¿½o excluir turma
 		JButton btnExcluirTurma = new JButton("Excluir Turma");
 		btnExcluirTurma.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
-		btnExcluirTurma.setBounds(372, 305, 103, 23);
+		btnExcluirTurma.setBounds(372, 332, 130, 23);
 		contentPane.add(btnExcluirTurma);
 		
 		//tela principal
-		JButton voltar = new JButton("<----");
+		JButton voltar = new JButton("Voltar");
 		voltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaPrincipal().setVisible(true);
+				 dispose();
 			}
 		});
-		voltar.setBounds(11, 389, 89, 23);
+		voltar.setBounds(41, 396, 89, 23);
 		contentPane.add(voltar);
+		
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(41, 88, 455, 229);
+		contentPane.add(scrollPane);
+		
+		tableTurmas = new JTable(new TurmaTableModel());
+		scrollPane.setViewportView(tableTurmas);
 	}
 }
