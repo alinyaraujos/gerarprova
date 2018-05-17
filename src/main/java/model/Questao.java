@@ -17,8 +17,7 @@ public class Questao {
 	private String assertivaE;
 	private int codAssunto;
 
-	public void cadastrar(int codigo, String enunciado, String nivel, String gabarito, String[] assertivas, int codAssunto) {
-		this.codigo = codigo;
+	public void cadastrar(String enunciado, String nivel, String gabarito, String[] assertivas, int codAssunto) {
 		this.enunciado = enunciado;
 		this.nivel = nivel;
 		this.gabarito = gabarito;

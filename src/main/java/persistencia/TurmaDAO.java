@@ -1,7 +1,10 @@
 package persistencia;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 import org.hibernate.query.Query;
 import org.hibernate.Session;
@@ -19,12 +22,19 @@ public class TurmaDAO extends Manager<Turma>{
 		this.turma=turma;
 	}
  
-    public void create() {
-        Session session = sessionFactory.openSession();
+
+    public boolean create() {
+        try {
+    	Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(this.turma);
         session.getTransaction().commit();
         session.close();
+        return true;
+        }catch(Exception e){
+        	JOptionPane.showMessageDialog(null, "erro ao salvar");
+        	return false;
+        } 
     }
     
     public List<Turma> getAll(){     
@@ -47,28 +57,38 @@ public class TurmaDAO extends Manager<Turma>{
 	    return t;
     }
  
-    public void update() {
+    public boolean update() {
         // code to modify a Turma
-     
+    	try {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(this.turma);
         session.getTransaction().commit();
         session.close();
+        return true;
+    	 }catch(Exception e){
+         	JOptionPane.showMessageDialog(null, "erro ao fazer update");
+         	return false;
+         }
     }
     
-    public void delete(Object c) {
+    public boolean delete(Object c) {
         // code to remove a Turma
     	String codigo = (String)c;
     	Turma t = new Turma();
 	    t.setCodigo(codigo);
-	 
+	    try {
 	    Session session = sessionFactory.openSession();
 	    session.beginTransaction();
 	 
 	    session.delete(t);
 	 
 	    session.getTransaction().commit();
-	    session.close();	
+	    session.close();
+	    return true;
+	    }catch(Exception e){
+        	JOptionPane.showMessageDialog(null, "erro ao Deletar turmar");
+        	return false;
+        } 
     }
 }

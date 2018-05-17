@@ -3,6 +3,8 @@ package persistencia;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 import org.hibernate.query.Query;
 
 import model.Aluno;
@@ -21,20 +23,37 @@ public class AssuntoDAO extends Manager<Assunto>{
 		this.assunto=assunto;
 	}
 	
-    public void create() {
-        Session session = sessionFactory.openSession();
+    public boolean create() {
+        try {
+    	Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(this.assunto);
         session.getTransaction().commit();
         session.close();
+        return true;
+        }catch(Exception e){
+        	JOptionPane.showMessageDialog(null, "erro ao salvar");
+        	return false;
+        } 
     }
     
     public List<Assunto> getAll(){     	
-    	List<Assunto> a;	
+    	List<Assunto> a;
+    
     	Session session = sessionFactory.openSession();
         Query Assunto = session.createQuery("from Assunto");
         a= Assunto.getResultList();
         session.close();
+        return a;
+	}
+    
+    public List<Assunto> getByDisciplina(Disciplina d){     	
+    	List<Assunto> a;	
+    	Session session = sessionFactory.openSession();
+        Query assunto = session.createQuery("from Assunto where cod_disciplina = :cod").setParameter("cod", d.getCodigo());
+        a = assunto.getResultList();
+        session.close();
+        
         return a;
 	}
  
@@ -46,26 +65,39 @@ public class AssuntoDAO extends Manager<Assunto>{
 	    return a;
     }
  
-    public void update() {
-        // code to modify     
+    public boolean update() {
+        try {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(this.assunto);
         session.getTransaction().commit();
         session.close();
+        return true;
+        }catch(Exception e){
+    		JOptionPane.showMessageDialog(null, "erro ao fazer update");
+    		return false;
+    	} 
+    	
     }
     
-    public void delete(Object c) {
+    public boolean delete(Object c) {
     	int codigo = (Integer) c;
-        // code to remove	
+        // code to remove
+    	
     	Assunto a = new Assunto();
 	    a.setCodigo(codigo);
-	 
+	    try {
 	    Session session = sessionFactory.openSession();
 	    session.beginTransaction();
 	 
 	    session.delete(a);
 	    session.getTransaction().commit();
-	    session.close();	
+	    session.close();
+	    return true;
+    	}catch(Exception e){
+    		JOptionPane.showMessageDialog(null, "erro ao deletar");
+    		return false;
+    	} 
+    	
     }
 }

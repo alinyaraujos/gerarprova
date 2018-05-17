@@ -50,4 +50,10 @@ public class Disciplina {
 		this.cpfProfessor = cpfProfessor;
 	}
 
+	@Override
+	public String toString() {
+		return this.nome;
+	}
+
+		
 }

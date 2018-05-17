@@ -45,7 +45,7 @@ public class TelaAluno extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		//ação exlcuir
+		//aï¿½ï¿½o exlcuir
 		JButton btnExcluirAluno = new JButton("Excluir Aluno");
 		btnExcluirAluno.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -75,7 +75,7 @@ public class TelaAluno extends JFrame {
 		turmaAluno.setBounds(66, 100, 308, 20);
 		contentPane.add(turmaAluno);
 		
-		//botão voltar
+		//botï¿½o voltar
 		JButton voltar = new JButton("<<<<<<");
 		voltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -91,3 +91,4 @@ public class TelaAluno extends JFrame {
 		contentPane.add(lblVisualizarAlunosPor);
 	}
 }
+

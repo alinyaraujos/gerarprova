@@ -15,18 +15,19 @@ public abstract class Manager <T>{
 
 	protected SessionFactory sessionFactory;
 	
-	public abstract void create();
+	public abstract boolean create();
     
     public abstract List<T> getAll();
  
     public abstract T read(Object codigo);
  
-    public abstract void update();
+    public abstract boolean update();
     
-    public abstract void delete(Object codigo);
+    public abstract boolean delete(Object codigo);
 	
-	
-    protected void setup() {
+
+    public void setup() {
+
         // code to load Hibernate Session factory
     	final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
     	        .configure() // configures settings from hibernate.cfg.xml
