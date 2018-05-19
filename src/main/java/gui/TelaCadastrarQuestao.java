@@ -61,7 +61,7 @@ public class TelaCadastrarQuestao extends JFrame {
 		final JComboBox comboBoxDisciplina = new JComboBox();
 		
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 480, 605);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
