@@ -56,10 +56,6 @@ public class TelaCadastrarQuestao extends JFrame {
 	public TelaCadastrarQuestao() {
 		this.fp = new FactoryDAO();
 		
-		final JComboBox comboBoxAssunto = new JComboBox();
-		
-		final JComboBox comboBoxDisciplina = new JComboBox();
-		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 480, 605);
@@ -78,36 +74,6 @@ public class TelaCadastrarQuestao extends JFrame {
 		});
 		btnCancelar.setBounds(74, 534, 117, 23);
 		contentPane.add(btnCancelar);
-		
-		final JComboBox comboBoxGabarito = new JComboBox();
-		comboBoxGabarito.setModel(new DefaultComboBoxModel(new String[] {"", "A", "B", "C", "D", "E"}));
-		comboBoxGabarito.setBounds(32, 419, 209, 24);
-		contentPane.add(comboBoxGabarito);
-		
-		final JComboBox comboBoxNivel = new JComboBox();
-		comboBoxNivel.setModel(new DefaultComboBoxModel(new String[] {"", "Facil", "Media", "Dificil"}));
-		comboBoxNivel.setBounds(253, 419, 203, 24);
-		contentPane.add(comboBoxNivel);
-		
-		//a��o salvar
-		JButton btnSalvar = new JButton("Salvar");
-		btnSalvar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				String[] assertivas = {entradaA.getText(), entradaB.getText(), entradaC.getText(), entradaD.getText(), entradaE.getText()};
-				
-				Questao q = new Questao();
-				q.cadastrar(saidaQuestao.getText(), (String) comboBoxNivel.getSelectedItem(), 
-						(String) comboBoxGabarito.getSelectedItem(), assertivas, ((Assunto) comboBoxAssunto.getSelectedItem()).getCodigo());
-				Manager<Questao> questaoManager = fp.getObjectDAO(q);
-				questaoManager.create();
-				questaoManager.exit();
-				
-				JOptionPane.showMessageDialog(null, "Questao cadastrada com sucesso.");
-				dispose();
-			}
-		});
-		btnSalvar.setBounds(293, 534, 117, 23);
-		contentPane.add(btnSalvar);
 		
 		JLabel lblCadastroDeQuestes = new JLabel("Cadastro de Quest\u00F5es");
 		lblCadastroDeQuestes.setBounds(163, 34, 169, 14);
@@ -179,6 +145,15 @@ public class TelaCadastrarQuestao extends JFrame {
 		lblAssunto.setBounds(251, 455, 103, 15);
 		contentPane.add(lblAssunto);
 		
+		JLabel lblNvel = new JLabel("Nivel:");
+		lblNvel.setBounds(253, 401, 66, 15);
+		contentPane.add(lblNvel);
+		
+		final JComboBox comboBoxAssunto = new JComboBox();
+		comboBoxAssunto.setBounds(249, 480, 211, 24);
+		contentPane.add(comboBoxAssunto);
+		
+		final JComboBox comboBoxDisciplina = new JComboBox();
 		comboBoxDisciplina.setModel(new DisciplinaComboBoxModel());
 		comboBoxDisciplina.setBounds(32, 480, 209, 24);
 		comboBoxDisciplina.addActionListener(new ActionListener() {
@@ -188,11 +163,37 @@ public class TelaCadastrarQuestao extends JFrame {
 		});
 		contentPane.add(comboBoxDisciplina);
 		
-		comboBoxAssunto.setBounds(249, 480, 211, 24);
-		contentPane.add(comboBoxAssunto);
+		final JComboBox comboBoxGabarito = new JComboBox();
+		comboBoxGabarito.setModel(new DefaultComboBoxModel(new String[] {"", "A", "B", "C", "D", "E"}));
+		comboBoxGabarito.setBounds(32, 419, 209, 24);
+		contentPane.add(comboBoxGabarito);
 		
-		JLabel lblNvel = new JLabel("Nivel:");
-		lblNvel.setBounds(253, 401, 66, 15);
-		contentPane.add(lblNvel);
+		final JComboBox comboBoxNivel = new JComboBox();
+		comboBoxNivel.setModel(new DefaultComboBoxModel(new String[] {"", "Facil", "Media", "Dificil"}));
+		comboBoxNivel.setBounds(253, 419, 203, 24);
+		contentPane.add(comboBoxNivel);
+		
+		
+		//a��o salvar
+		JButton btnSalvar = new JButton("Salvar");
+		btnSalvar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String[] assertivas = {entradaA.getText(), entradaB.getText(), entradaC.getText(), entradaD.getText(), entradaE.getText()};
+				
+				Questao q = new Questao();
+				q.cadastrar(saidaQuestao.getText(), (String) comboBoxNivel.getSelectedItem(), 
+						(String) comboBoxGabarito.getSelectedItem(), assertivas, ((Assunto) comboBoxAssunto.getSelectedItem()).getCodigo());
+				Manager<Questao> questaoManager = fp.getObjectDAO(q);
+				questaoManager.create();
+				questaoManager.exit();
+				
+				JOptionPane.showMessageDialog(null, "Questao cadastrada com sucesso.");
+				dispose();
+			}
+		});
+		btnSalvar.setBounds(293, 534, 117, 23);
+		contentPane.add(btnSalvar);
+		
+		
 	}
 }

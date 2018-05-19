@@ -17,8 +17,7 @@ import javax.swing.JScrollPane;
 
 public class TelaTurma extends JFrame {
 
-	private JPanel contentPane;
-	private JTable tableTurmas;
+	private JPanel contentPane;	
 
 	/**
 	 * Launch the application.

@@ -6,11 +6,11 @@ import javax.persistence.*;
 public class Turma {
 	
 	private int ano;
-	private String cpfProfessor;
 	private String semestre;
 	private String codigo;
+	private String cpfProfessor;
 
-	public void cadastrar(int ano, String cpfProfessor, String semestre, String codigo) {
+	public void cadastrar(String codigo, int ano, String semestre, String cpfProfessor) {
 		this.codigo=codigo;
 		this.ano=ano;
 		this.semestre=semestre;
@@ -60,4 +60,8 @@ public class Turma {
 		this.codigo = codigo;
 	}
 	
+	@Override
+	public String toString() {
+		return this.codigo;
+	}
 }

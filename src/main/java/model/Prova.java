@@ -1,6 +1,6 @@
 package model;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.*;
 
@@ -11,15 +11,14 @@ public class Prova {
 	private int codigo;
 	private String nome;
 	private String codTurma;
-	private ArrayList<Questao> questoes;
-
-	public void cadastrar(int codigo, String nome, String codTurma, ArrayList<Questao> questoes) {
-		this.codigo	  = codigo;
+	private List<Questao> questoes;
+	
+	public void cadastrar(String nome, String codTurma) {
 		this.nome 	  = nome; 
 		this.codTurma = codTurma;
 	}	
 
-	public void atualizar(String nome, ArrayList<Questao> questoes) {
+	public void atualizar(String nome, List<Questao> questoes) {
 
 	}
 
@@ -27,20 +26,17 @@ public class Prova {
 
 	}
 
-	//public File gerarProva() {
-		//return null;
-	//}
-	
-	public ArrayList<Questao> sortearQuestoes() {
+	public List<Questao> sortearQuestoes() {
 		return null;
 	}
 
-	public ArrayList<Questao> listarQuestoes() {
+	public List<Questao> listarQuestoes() {
 		return null;
 	}
 	
 	@Id
 	@Column(name = "codigo")
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getCodigo() {
 		return codigo;
 	}
@@ -59,14 +55,14 @@ public class Prova {
 	}
 
 	@Transient
-	public ArrayList<Questao> getQuestoes() {
+	public List<Questao> getQuestoes() {
 		return questoes;
 	}
 
-	public void setQuestoes(ArrayList<Questao> questoes) {
+	public void setQuestoes(List<Questao> questoes) {
 		this.questoes = questoes;
 	}
-
+	
 	@Column(name="turma_codigo")
 	public String getCodTurma() {
 		return codTurma;

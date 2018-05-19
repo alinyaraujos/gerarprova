@@ -9,6 +9,7 @@ import javax.swing.border.EmptyBorder;
 
 import model.Professor;
 import patternproject.FactoryDAO;
+import patternproject.SingletonProfessor;
 import persistencia.Manager;
 import persistencia.ProfessorDAO;
 
@@ -28,6 +29,7 @@ public class TelaMinhaInformacao extends JFrame {
 	private JTextField entradaEmail;
 	private JTextField entradaInstituicao;
 	private FactoryDAO<Professor> fp;
+	private SingletonProfessor dados;
 
 	/**
 	 * Launch the application.
@@ -50,6 +52,7 @@ public class TelaMinhaInformacao extends JFrame {
 	 */
 	public TelaMinhaInformacao() {
 		this.fp = new FactoryDAO();
+		this.dados = SingletonProfessor.getInstance();
 		List<Professor> professores;
 		Professor p = new Professor();
 		
@@ -131,9 +134,8 @@ public class TelaMinhaInformacao extends JFrame {
 				Manager<Professor> professorManager = fp.getObjectDAO(professor);
 				professorManager.update();
 				professorManager.exit();
-				
+				dados.setProfessor(professor);
 				JOptionPane.showMessageDialog(null, "Os dados foram atualizados com sucesso.");
-				
 				dispose();
 			}
 		});

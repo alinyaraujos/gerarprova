@@ -6,6 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Disciplina;
+import model.Turma;
+import patternproject.FactoryDAO;
+import patternproject.SingletonProfessor;
+import persistencia.Manager;
+
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
@@ -16,6 +23,9 @@ public class TelaDisciplina extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField entradaDisciplina;
+	private JTextField entradaCodigo;
+	private FactoryDAO<Disciplina> fp;
+	private SingletonProfessor dados;
 
 	/**
 	 * Launch the application.
@@ -37,6 +47,10 @@ public class TelaDisciplina extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaDisciplina() {
+		
+		this.fp = new FactoryDAO();
+		this.dados = SingletonProfessor.getInstance();
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -46,32 +60,48 @@ public class TelaDisciplina extends JFrame {
 		contentPane.setLayout(null);
 		
 		JLabel lblCadastroDeDisciplina = new JLabel("Cadastro de Disciplina");
-		lblCadastroDeDisciplina.setBounds(152, 37, 110, 14);
+		lblCadastroDeDisciplina.setBounds(147, 39, 176, 14);
 		contentPane.add(lblCadastroDeDisciplina);
 		
 		JLabel lblNomeDaDisciplina = new JLabel("Nome da Disciplina:");
-		lblNomeDaDisciplina.setBounds(39, 91, 102, 14);
+		lblNomeDaDisciplina.setBounds(39, 131, 155, 14);
 		contentPane.add(lblNomeDaDisciplina);
+		
+		entradaDisciplina = new JTextField();
+		entradaDisciplina.setBounds(39, 153, 362, 20);
+		contentPane.add(entradaDisciplina);
+		entradaDisciplina.setColumns(10);
+		
+		JLabel label = new JLabel("Codigo:");
+		label.setBounds(39, 67, 155, 23);
+		contentPane.add(label);
+		
+		entradaCodigo = new JTextField();
+		entradaCodigo.setColumns(10);
+		entradaCodigo.setBounds(39, 95, 362, 20);
+		contentPane.add(entradaCodigo);
+		
 		
 		//a��o bot�o disciplina
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dispose();
+				 dispose();
 			}
 		});
-		btnCancelar.setBounds(85, 209, 89, 23);
-		contentPane.add(btnCancelar);
-		
-		entradaDisciplina = new JTextField();
-		entradaDisciplina.setBounds(39, 111, 362, 20);
-		contentPane.add(entradaDisciplina);
-		entradaDisciplina.setColumns(10);
+		btnCancelar.setBounds(85, 209, 109, 23);
+		contentPane.add(btnCancelar);		
 		
 		//a��o salvar
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				Disciplina disciplina = new Disciplina();
+				
+				disciplina.cadastrar(entradaCodigo.getText(), entradaDisciplina.getText(), dados.getProfessor().getCpf());
+				Manager<Disciplina> disciplinaManager = fp.getObjectDAO(disciplina);
+				disciplinaManager.create();
+				disciplinaManager.exit();
 				dispose();
 			}
 		});

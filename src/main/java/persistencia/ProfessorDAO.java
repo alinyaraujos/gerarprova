@@ -68,7 +68,6 @@ public class ProfessorDAO extends Manager<Professor>{
  
     public void update() {
         // code to modify a professor
-
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         
