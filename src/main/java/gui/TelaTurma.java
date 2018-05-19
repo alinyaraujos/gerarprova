@@ -56,6 +56,11 @@ public class TelaTurma extends JFrame {
 		JLabel lblTurmas = new JLabel("Turmas:");
 		lblTurmas.setBounds(41, 62, 59, 14);
 		contentPane.add(lblTurmas);
+
+		JTextPane mostraTurmas = new JTextPane();
+		mostraTurmas.setEditable(false);
+		mostraTurmas.setBounds(37, 95, 438, 176);
+		contentPane.add(mostraTurmas);
 		
 		// bot�o cadastrar turma
 		JButton btnNovaTurma = new JButton("Nova Turma");

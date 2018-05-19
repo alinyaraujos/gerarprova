@@ -21,7 +21,7 @@ public abstract class Manager <T>{
  
     public abstract T read(Object codigo);
  
-    public abstract boolean update();
+    public abstract void update();
     
     public abstract boolean delete(Object codigo);
 	

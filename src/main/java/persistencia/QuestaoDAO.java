@@ -30,17 +30,13 @@ public class QuestaoDAO extends Manager<Questao>{
 	
  
     public boolean create() {
-        try {
+     
     	Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(this.questao);
         session.getTransaction().commit();
         session.close();
-        return true;
-        }catch(Exception e){
-        	JOptionPane.showMessageDialog(null, "erro ao salvar");
-        	return false;
-        }
+       return true;
     }
     
     public List<Questao> getAll(){     
@@ -87,8 +83,17 @@ public class QuestaoDAO extends Manager<Questao>{
     	
     	return questions;
     }
+    
+    public List<Questao> getByQuestaoRand(Assunto a){     	
+    	List<Questao> q;	
+    	Session session = sessionFactory.openSession();
+        Query questao = session.createQuery("from Questao where cod_assunto = :cod ORDER BY RAND()").setParameter("cod", a.getCodigo());
+        q = questao.getResultList();
+        session.close();
+        return q;
+	}
  
-    public boolean update() {
+    public void update() {
         // code to modify a questao
     	
     	Questao qNew = this.questao;
@@ -117,17 +122,13 @@ public class QuestaoDAO extends Manager<Questao>{
         
         if (qNew.getCodAssunto() != 0)
         	q.setCodAssunto(qNew.getCodAssunto());
-        try {
+    
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(q);
         session.getTransaction().commit();
         session.close();
-        return true;
-        }catch(Exception e){
-    		JOptionPane.showMessageDialog(null, "erro ao modificar questão");
-    		return false;
-    	} 
+        
     	
     }
     
@@ -136,7 +137,8 @@ public class QuestaoDAO extends Manager<Questao>{
     	int codigo = (Integer)c;
     	Questao q = new Questao();
 	    q.setCodigo(codigo);
-	    try{
+	    
+	    try {
 	    Session session = sessionFactory.openSession();
 	    session.beginTransaction();
 	 
@@ -145,11 +147,8 @@ public class QuestaoDAO extends Manager<Questao>{
 	    session.getTransaction().commit();
 	    session.close();
 	    return true;
-		}catch(Exception e){
-    		JOptionPane.showMessageDialog(null, "Erro ao deletar");
-    		return false;
-    	} 
-    	
-    	
+	    }catch(Exception ex){
+	    	return false;
+	    }
     }
 }

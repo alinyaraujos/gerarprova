@@ -24,17 +24,13 @@ public class TurmaDAO extends Manager<Turma>{
  
 
     public boolean create() {
-        try {
+       
     	Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.save(this.turma);
         session.getTransaction().commit();
         session.close();
-        return true;
-        }catch(Exception e){
-        	JOptionPane.showMessageDialog(null, "erro ao salvar");
-        	return false;
-        } 
+      return true;
     }
     
     public List<Turma> getAll(){     
@@ -57,19 +53,15 @@ public class TurmaDAO extends Manager<Turma>{
 	    return t;
     }
  
-    public boolean update() {
+    public void update() {
         // code to modify a Turma
-    	try {
+    	
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(this.turma);
         session.getTransaction().commit();
         session.close();
-        return true;
-    	 }catch(Exception e){
-         	JOptionPane.showMessageDialog(null, "erro ao fazer update");
-         	return false;
-         }
+      
     }
     
     public boolean delete(Object c) {
@@ -77,6 +69,7 @@ public class TurmaDAO extends Manager<Turma>{
     	String codigo = (String)c;
     	Turma t = new Turma();
 	    t.setCodigo(codigo);
+	    
 	    try {
 	    Session session = sessionFactory.openSession();
 	    session.beginTransaction();
@@ -86,9 +79,8 @@ public class TurmaDAO extends Manager<Turma>{
 	    session.getTransaction().commit();
 	    session.close();
 	    return true;
-	    }catch(Exception e){
-        	JOptionPane.showMessageDialog(null, "erro ao Deletar turmar");
-        	return false;
-        } 
+	    }catch(Exception ex) {
+	    	return false;
+	    }
     }
 }
