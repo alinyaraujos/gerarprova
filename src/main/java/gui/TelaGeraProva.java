@@ -44,12 +44,6 @@ public class TelaGeraProva extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaGeraProva() {
-		
-		final JComboBox selecaoAssunto = new JComboBox();
-		
-		final JComboBox selecaoDisciplina = new JComboBox();
-		
-		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 380);
@@ -66,23 +60,9 @@ public class TelaGeraProva extends JFrame {
 		lblDisciplina.setBounds(34, 74, 127, 14);
 		contentPane.add(lblDisciplina);
 		
-		
-		selecaoDisciplina.setModel(new DisciplinaComboBoxModel());
-		selecaoDisciplina.setBounds(34, 88, 379, 20);
-		selecaoDisciplina.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				selecaoAssunto.setModel(new AssuntoComboBoxModel(selecaoDisciplina.getSelectedItem()));
-			}
-		});
-		
-		contentPane.add(selecaoDisciplina);
-		
 		JLabel lblAssunto = new JLabel("Assunto:");
 		lblAssunto.setBounds(34, 130, 98, 14);
 		contentPane.add(lblAssunto);
-		
-		selecaoAssunto.setBounds(34, 145, 379, 20);
-		contentPane.add(selecaoAssunto);
 		
 		JLabel lblNmeroDeQuestes = new JLabel("N\u00FAmero de Quest\u00F5es:");
 		lblNmeroDeQuestes.setBounds(34, 193, 204, 14);
@@ -92,6 +72,19 @@ public class TelaGeraProva extends JFrame {
 		numeroQuestao.setBounds(34, 223, 114, 35);
 		contentPane.add(numeroQuestao);
 
+		final JComboBox selecaoAssunto = new JComboBox();
+		selecaoAssunto.setBounds(34, 145, 379, 20);
+		contentPane.add(selecaoAssunto);
+		
+		final JComboBox selecaoDisciplina = new JComboBox();
+		selecaoDisciplina.setModel(new DisciplinaComboBoxModel());
+		selecaoDisciplina.setBounds(34, 88, 379, 20);
+		selecaoDisciplina.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				selecaoAssunto.setModel(new AssuntoComboBoxModel(selecaoDisciplina.getSelectedItem()));
+			}
+		});
+		contentPane.add(selecaoDisciplina);
 		
 		//ação salvar
 		try {
@@ -106,10 +99,10 @@ public class TelaGeraProva extends JFrame {
 					GeraProva gp = new GeraProva();
 					int num = Integer.parseInt(numeroQuestao.getText());
 				
-					boolean gerarProva = gp.geraPdf(num, ((Assunto) selecaoAssunto.getSelectedItem()));
+					boolean gerarProva = gp.geraPdf(num, ((Assunto) selecaoAssunto.getSelectedItem()), null);
 					System.out.println(gerarProva);
 					if(gerarProva) {
-						JOptionPane.showMessageDialog(null, "Prova gerada com sucesso!");
+						JOptionPane.showMessageDialog(null, "Prova salva com sucesso! Caso deseje gerar o pdf click no botão: 'Gerar PDf'");
 						dispose();
 					}else {
 						JOptionPane.showMessageDialog(null, "Quantidade de questões não existem cadastrada no banco");
@@ -127,7 +120,7 @@ public class TelaGeraProva extends JFrame {
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaPrincipal().setVisible(true);
+				dispose();
 			}
 		});
 		btnCancelar.setBounds(102, 287, 89, 23);

@@ -15,20 +15,40 @@ import model.Prova;
 public class ProvaDAO extends Manager<Prova>{
 	
 	private Prova prova;
+	private int codId;
 	
 	public ProvaDAO(Prova prova){
 		this.setup();
 		this.prova=prova;
 	}
  
+    /* public boolean create() {
+        try {
+	    	Session session = sessionFactory.openSession();
+	        session.beginTransaction();
+	        session.save(this.prova);
+	        session.getTransaction().commit();
+	        System.out.println();
+	        session.close();
+	        return true;
+        }catch(Exception e){
+        	JOptionPane.showMessageDialog(null, "erro ao salvar");
+        	return false;
+        } 
+    }
+    */
+    
+    
     public boolean create() {
         try {
-    	Session session = sessionFactory.openSession();
-        session.beginTransaction();
-        session.save(this.prova);
-        session.getTransaction().commit();
-        session.close();
-        return true;
+        	Integer codID = null;
+	    	Session session = sessionFactory.openSession();
+	        session.beginTransaction();
+	        codID = (Integer)session.save(this.prova);
+	        session.getTransaction().commit();
+	        session.close();
+	        this.codId = codID;
+	        return true;
         }catch(Exception e){
         	JOptionPane.showMessageDialog(null, "erro ao salvar");
         	return false;
@@ -86,7 +106,10 @@ public class ProvaDAO extends Manager<Prova>{
     		JOptionPane.showMessageDialog(null, "erro ao deletar");
     		return false;
     	} 
-    	
     }    
+    
+    public int getCodigo() {
+    	return this.codId;
+    }
     
 }

@@ -6,8 +6,16 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Turma;
+import model.Professor;
+import patternproject.FactoryDAO;
+import patternproject.SingletonProfessor;
+import persistencia.Manager;
+
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -15,6 +23,9 @@ import javax.swing.ImageIcon;
 public class TelaPrincipal extends JFrame {
 
 	private JPanel contentPane;
+	private FactoryDAO<Turma> fpTurma;
+	private FactoryDAO<Professor> fpProfessor;
+	private SingletonProfessor dados;
 
 	/**
 	 * Launch the application.
@@ -36,6 +47,23 @@ public class TelaPrincipal extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaPrincipal() {
+		
+		this.fpProfessor = new FactoryDAO();
+		this.dados = SingletonProfessor.getInstance();
+		
+		List<Professor> professores;
+		Professor p = new Professor();
+		Manager<Professor> professorManager = fpProfessor.getObjectDAO(p);
+		
+		professores = professorManager.getAll();
+		
+		if (professores.size() > 0) {
+			p = professores.get(0);
+			dados.setProfessor(p);
+		}
+		professorManager.exit();
+
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -49,7 +77,7 @@ public class TelaPrincipal extends JFrame {
 		JButton btnGerarProva = new JButton("Gerar Prova");
 		btnGerarProva.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaGeraProva().setVisible(true);
+				 new TelaCadastrarProva().setVisible(true);
 			}
 		});
 		btnGerarProva.setBounds(162, 218, 145, 23);

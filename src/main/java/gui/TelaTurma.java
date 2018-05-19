@@ -16,7 +16,7 @@ import java.awt.event.ActionEvent;
 
 public class TelaTurma extends JFrame {
 
-	private JPanel contentPane;
+	private JPanel contentPane;	
 
 	/**
 	 * Launch the application.
@@ -91,7 +91,7 @@ public class TelaTurma extends JFrame {
 		JButton voltar = new JButton("<----");
 		voltar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaPrincipal().setVisible(true);
+				 dispose();
 			}
 		});
 		voltar.setBounds(11, 389, 89, 23);

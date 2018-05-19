@@ -6,6 +6,13 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import model.Assunto;
+import model.Disciplina;
+import patternproject.FactoryDAO;
+import patternproject.SingletonProfessor;
+import persistencia.Manager;
+
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
@@ -17,6 +24,8 @@ public class TelaCadastraAssunto extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField entradaConteudo;
+	private FactoryDAO<Assunto> fp;
+	private SingletonProfessor dados;
 
 	/**
 	 * Launch the application.
@@ -38,6 +47,12 @@ public class TelaCadastraAssunto extends JFrame {
 	 * Create the frame.
 	 */
 	public TelaCadastraAssunto() {
+		
+		final JComboBox selecaoDisciplina = new JComboBox();
+		
+		this.fp = new FactoryDAO();
+		this.dados = SingletonProfessor.getInstance();
+		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 322);
@@ -63,15 +78,16 @@ public class TelaCadastraAssunto extends JFrame {
 		lblDisciplina.setBounds(36, 137, 71, 14);
 		contentPane.add(lblDisciplina);
 		
-		JComboBox selecaoDisciplina = new JComboBox();
-		selecaoDisciplina.setBounds(36, 162, 368, 20);
+		selecaoDisciplina.setModel(new DisciplinaComboBoxModel());
+		selecaoDisciplina.setBounds(36, 162, 368, 20);		
 		contentPane.add(selecaoDisciplina);
+		
 		
 		//ação cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				new TelaPrincipal().setVisible(true);
+				 dispose();
 			}
 		});
 		btnCancelar.setBounds(87, 227, 89, 23);
@@ -81,7 +97,16 @@ public class TelaCadastraAssunto extends JFrame {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaPrincipal().setVisible(true);
+				Assunto assunto = new Assunto();
+				
+				String codDisciplina = ((Disciplina) selecaoDisciplina.getSelectedItem()).getCodigo();
+				
+				System.out.println(codDisciplina);
+				assunto.cadastrar(entradaConteudo.getText(), codDisciplina);
+				Manager<Assunto> assuntoManager = fp.getObjectDAO(assunto);
+				assuntoManager.create();
+				assuntoManager.exit();
+				dispose();
 			}
 		});
 		btnSalvar.setBounds(250, 227, 89, 23);

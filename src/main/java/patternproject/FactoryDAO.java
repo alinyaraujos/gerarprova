@@ -8,6 +8,7 @@ import model.Assunto;
 import model.Disciplina;
 import model.Professor;
 import model.Prova;
+import model.ProvaQuestao;
 import model.Questao;
 import model.Turma;
 import persistencia.AlunoDAO;
@@ -16,6 +17,7 @@ import persistencia.DisciplinaDAO;
 import persistencia.Manager;
 import persistencia.ProfessorDAO;
 import persistencia.ProvaDAO;
+import persistencia.ProvaQuestaoDAO;
 import persistencia.QuestaoDAO;
 import persistencia.TurmaDAO;
 
@@ -43,6 +45,9 @@ public  class FactoryDAO <T>{
 		}
 		if(object instanceof Turma) {
 			return new TurmaDAO((Turma)object);
+		}
+		if(object instanceof ProvaQuestao) {
+			return new ProvaQuestaoDAO((ProvaQuestao)object);
 		}
 		return null;
 	}
