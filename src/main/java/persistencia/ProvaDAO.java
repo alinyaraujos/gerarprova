@@ -72,19 +72,15 @@ public class ProvaDAO extends Manager<Prova>{
 	    return p;
     }
  
-    public boolean update() {
+    public void update() {
         // code to modify
-    	try {
+    	
         Session session = sessionFactory.openSession();
         session.beginTransaction();
         session.update(this.prova);
         session.getTransaction().commit();
         session.close();
-        return true;
-    	}catch(Exception e){
-    		JOptionPane.showMessageDialog(null, "erro ao fazer update");
-    		return false;
-    	} 
+      
     	
     }
     
@@ -102,6 +98,7 @@ public class ProvaDAO extends Manager<Prova>{
 	    session.getTransaction().commit();
 	    session.close();
 	    return true;
+	    
     	}catch(Exception e){
     		JOptionPane.showMessageDialog(null, "erro ao deletar");
     		return false;

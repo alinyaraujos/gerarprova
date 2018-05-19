@@ -52,20 +52,24 @@ public class ProvaQuestaoDAO extends Manager<ProvaQuestao>{
 	    return p;
     }
  
-    public boolean update() {
-        // code to modify
-    	try {
+    public void update() {
+        // code to modify a professor
+    	
         Session session = sessionFactory.openSession();
         session.beginTransaction();
+
+        
+        if (this.getAll().size() > 0) {
+        	session.update(this.provaQuestoes);
+        	session.getTransaction().commit();
+        	session.close();
+        } else {
+        	this.create();
+        }
+        
         session.update(this.provaQuestoes);
         session.getTransaction().commit();
         session.close();
-        return true;
-    	}catch(Exception e){
-    		JOptionPane.showMessageDialog(null, "erro ao fazer update");
-    		return false;
-    	} 
-    	
     }
 
 	@Override
