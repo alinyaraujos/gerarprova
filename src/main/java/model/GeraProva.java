@@ -84,8 +84,6 @@ public class GeraProva {
 		documento.close();   
 		return true;
 	}
-<<<<<<< HEAD
-=======
 	
 	public boolean salvaProva(int quantidade, Assunto a, String codTurma, String apelido) throws FileNotFoundException {
 		
@@ -121,6 +119,4 @@ public class GeraProva {
 		}
 		return false;
 	}
-	
->>>>>>> origin/merge
 }
