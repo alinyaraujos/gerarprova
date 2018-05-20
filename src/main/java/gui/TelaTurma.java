@@ -103,7 +103,7 @@ public class TelaTurma extends JFrame {
 		scrollPane.setBounds(41, 88, 455, 229);
 		contentPane.add(scrollPane);
 		
-		tableTurmas = new JTable(new TurmaTableModel());
+		JTable tableTurmas = new JTable(new TurmaTableModel());
 		scrollPane.setViewportView(tableTurmas);
 	}
 }

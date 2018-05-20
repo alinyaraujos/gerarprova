@@ -14,6 +14,7 @@ import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import patternproject.FactoryDAO;
+import patternproject.SingletonProfessor;
 import persistencia.Manager;
 import persistencia.ProvaDAO;
 import persistencia.QuestaoDAO;
@@ -24,15 +25,18 @@ public class GeraProva {
 	private FactoryDAO<Prova> fpProva;
 	private FactoryDAO<ProvaQuestao> fpQuestao;
 	private List<Questao> listQuestoes;
-	private Prova prova;
 	private ProvaQuestao provaQuestao;
 	private QuestaoDAO questoes;
+	private SingletonProfessor dados;
+	private Prova prova;
 	
 	public boolean geraPdf(int quantidade, Assunto a, String apelido) throws Exception{
 		
-		if(this.listQuestoes.size()==0) {
+		this.dados = SingletonProfessor.getInstance();
+		
+		if(this.listQuestoes==null) {
 			this.questoes = new QuestaoDAO();
-			listQuestoes = questoes.getByQuestaoRand(a);
+			this.listQuestoes = questoes.getByQuestaoRand(a);
 		}
 		try {
 			if(listQuestoes.size()>=quantidade) { 
@@ -40,13 +44,13 @@ public class GeraProva {
 	            	Date d = new Date();
 	                Calendar cal = new GregorianCalendar();
 	                cal.setTime(d);
-                	cal.getTimeInMillis();
+                	apelido = "pdf_"+cal.getTimeInMillis();
                 }
                 
 				PdfWriter.getInstance(documento, new FileOutputStream("./"+apelido+".pdf"));
 				documento.open();
-				
-
+				documento.add(new Paragraph("             " + this.dados.getProfessor().getInstituicao()));
+				documento.add(new Paragraph("Professor(a):" + this.dados.getProfessor().getNome()));
 				documento.add(new Paragraph("Aluno(a):______________________________________"));
 				documento.add(new Paragraph(" "));
 				documento.add(new Paragraph(" "));
