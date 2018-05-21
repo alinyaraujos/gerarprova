@@ -11,12 +11,14 @@ import patternproject.FactoryDAO;
 import persistencia.AssuntoDAO;
 import persistencia.Manager;
 
+// Modelo para o ComboBox de seleção de assuntos. Extende de ComboBoxModel e utiliza a classe Assunto
 public class AssuntoComboBoxModel extends AbstractListModel<Assunto> implements ComboBoxModel<Assunto> {
 
 	private List<Assunto> ComputerComps;
 	private Assunto selection;
 	private FactoryDAO<Assunto> fp;
 	
+	// Ao ser instanciando, o objeto busca no banco todos os assuntos de acordo com a disciplina
 	public AssuntoComboBoxModel(Object d) {
 		this.fp = new FactoryDAO();
 		
