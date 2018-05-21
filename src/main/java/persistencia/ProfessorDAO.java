@@ -15,7 +15,9 @@ import model.Assunto;
 import model.Professor;
 
 public class ProfessorDAO extends Manager<Professor>{
-	
+	public Query getQuery() {
+		return null;
+	}
 	private Professor professor;
 	
 	public ProfessorDAO(Professor professor) {

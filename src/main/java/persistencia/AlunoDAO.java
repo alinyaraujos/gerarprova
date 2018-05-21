@@ -9,7 +9,7 @@ import org.hibernate.query.Query;
 import org.hibernate.Session;
 
 import model.Aluno;
-
+import model.Turma;
 
 public class AlunoDAO extends Manager<Aluno>{
  	
@@ -35,6 +35,16 @@ public class AlunoDAO extends Manager<Aluno>{
         Query aluno = session.createQuery("from Aluno");
         a= aluno.getResultList();
         session.close();
+        return a;
+	}
+    
+    public List<Aluno> getByTurma(Turma t){     	
+    	List<Aluno> a;	
+    	Session session = sessionFactory.openSession();
+        Query aluno = session.createQuery("from Aluno where cod_turma = :cod").setParameter("cod", t.getCodigo());
+        a = aluno.getResultList();
+        session.close();
+        
         return a;
 	}
  

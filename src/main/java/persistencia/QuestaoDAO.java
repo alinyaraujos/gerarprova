@@ -151,4 +151,7 @@ public class QuestaoDAO extends Manager<Questao>{
 	    	return false;
 	    }
     }
+	public Query getQuery() {
+		return null;
+	}
 }

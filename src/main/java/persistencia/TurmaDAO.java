@@ -42,7 +42,7 @@ public class TurmaDAO extends Manager<Turma>{
         t= Turma.getResultList();
         session.close();
         return t;
-	}
+	}    
  
     public Turma read(Object c) {
     	String codigo = (String)c;

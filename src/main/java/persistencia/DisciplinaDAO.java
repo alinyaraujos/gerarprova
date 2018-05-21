@@ -12,7 +12,9 @@ import model.Disciplina;
 import model.Disciplina;;
 
 public class DisciplinaDAO extends Manager<Disciplina>{
-	
+	public Query getQuery() {
+		return null;
+	}
 	private Disciplina disciplina;
 	
 	public DisciplinaDAO(Disciplina disciplina){

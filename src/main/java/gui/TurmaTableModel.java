@@ -11,7 +11,7 @@ import persistencia.Manager;
 
 public class TurmaTableModel extends AbstractTableModel{
 	
-	private String[] colunas = {"CÃ³digo", "Ano", "Semestre"};
+	private String[] colunas = {"Código", "Ano", "Semestre"};
 	private List<Turma> turmas;
 	
 	private final int COLUNA_CODIGO = 0;
