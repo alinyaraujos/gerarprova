@@ -29,6 +29,7 @@ public class TelaEditarAluno extends JFrame {
 	private JPanel contentPane;
 	private JTextField entradaNome;
 	private JTextField entradaMatricula;
+	private JTextField turmaAtual;
 
 	/**
 	 * Launch the application.
@@ -56,7 +57,7 @@ public class TelaEditarAluno extends JFrame {
 		
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 450, 351);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -70,33 +71,34 @@ public class TelaEditarAluno extends JFrame {
 			}
 		});
 		
-		btnVoltar.setBounds(59, 232, 130, 25);
+		btnVoltar.setBounds(33, 270, 130, 25);
 		contentPane.add(btnVoltar);
 		
 		
 		JLabel lblNomeDoAluno = new JLabel("Nome do Aluno:");
-		lblNomeDoAluno.setBounds(48, 110, 148, 14);
+		lblNomeDoAluno.setBounds(36, 82, 148, 14);
 		contentPane.add(lblNomeDoAluno);
 		
 		entradaNome = new JTextField(aluno.getNome());
-		entradaNome.setBounds(48, 128, 345, 20);
+		entradaNome.setBounds(36, 99, 345, 20);
 		contentPane.add(entradaNome);
 		entradaNome.setColumns(10);
 	
 		JLabel lblMatricula = new JLabel("Matricula:");
-		lblMatricula.setBounds(48, 59, 109, 14);
+		lblMatricula.setBounds(36, 16, 109, 14);
 		contentPane.add(lblMatricula);
 		
 		entradaMatricula = new JTextField(""+aluno.getMatricula());
 		entradaMatricula.setEditable(false);
-		entradaMatricula.setBounds(48, 76, 345, 20);
+		entradaMatricula.setBounds(34, 46, 345, 20);
 		contentPane.add(entradaMatricula);
 		entradaMatricula.setColumns(10);
 		
 		
 		final JComboBox selecaoTurma = new JComboBox();
 		selecaoTurma.setModel(new TurmaComboBoxModel());
-		selecaoTurma.setBounds(48, 179, 109, 20);
+		//selecaoTurma.setSelectedIndex(0,1[""]);
+		selecaoTurma.setBounds(232, 193, 109, 20);
 		contentPane.add(selecaoTurma);
 		
 		
@@ -126,7 +128,21 @@ public class TelaEditarAluno extends JFrame {
 			}
 		});
 		
-		btnAtualizar.setBounds(276, 232, 130, 25);
+		btnAtualizar.setBounds(274, 270, 130, 25);
 		contentPane.add(btnAtualizar);
+		
+		JLabel lblNewLabel = new JLabel("Selecionar nova Turma:");
+		lblNewLabel.setBounds(33, 193, 174, 20);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblTurmaAtua = new JLabel("Turma Atual:");
+		lblTurmaAtua.setBounds(33, 157, 112, 20);
+		contentPane.add(lblTurmaAtua);
+		
+		turmaAtual = new JTextField(""+aluno.getCodTurma());
+		turmaAtual.setBounds(143, 154, 146, 26);
+		turmaAtual.setEditable(false);
+		contentPane.add(turmaAtual);
+		turmaAtual.setColumns(10);
 	}
 }
