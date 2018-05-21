@@ -127,7 +127,7 @@ public class TelaPrincipal extends JFrame {
 		JButton btnAssuntos = new JButton("Assuntos");
 		btnAssuntos.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				 new TelaCadastraAssunto().setVisible(true);
+				 new TelaAssunto().setVisible(true);
 			}
 		});
 		btnAssuntos.setBounds(252, 133, 178, 23);

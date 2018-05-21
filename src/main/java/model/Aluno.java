@@ -23,6 +23,7 @@ public class Aluno {
 	public void remover(int matricula) {
 
 	}
+	
 	@Id
 	@Column(name="matricula")
 	public int getMatricula() {
