@@ -8,6 +8,7 @@ import model.Disciplina;
 import patternproject.FactoryDAO;
 import persistencia.Manager;
 
+// TableModel criado para alimentar a tabela de disciplinas
 public class DisciplinaTableModel extends AbstractTableModel{
 	
 	private String[] colunas = {"Código", "Nome"};
@@ -16,10 +17,13 @@ public class DisciplinaTableModel extends AbstractTableModel{
 	private final int COLUNA_CODIGO = 0;
 	private final int COLUNA_NOME = 1;
 	
+	//Ao ser instanciado realiza a chamada para o método update
 	public DisciplinaTableModel() {
 		this.update();
 	}
 	
+	// Atualiza a lista de displinas realizando uma busca no banco, e logo após atualiza a tabela chamando o
+	// método fireTableDataChanged
 	public void update() {
 		FactoryDAO<Disciplina> fp = new FactoryDAO();
 		
@@ -74,7 +78,7 @@ public class DisciplinaTableModel extends AbstractTableModel{
 		fireTableDataChanged();
 	}
 	
-	public Disciplina getTurma(int index) {
+	public Disciplina getDisciplina(int index) {
 		return this.disciplinas.get(index);
 	}
 	

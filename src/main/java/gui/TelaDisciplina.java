@@ -14,6 +14,7 @@ import patternproject.SingletonProfessor;
 import persistencia.Manager;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
@@ -95,10 +96,49 @@ public class TelaDisciplina extends JFrame {
 		
 		JButton btnEditar = new JButton("Editar");
 		btnEditar.setBounds(168, 263, 129, 25);
+		btnEditar.addActionListener(new ActionListener() {	
+			public void actionPerformed(ActionEvent e) {
+				int selectedRow = TelaDisciplina.tableDisciplinas.getSelectedRow();
+				
+				if (selectedRow > -1) {
+					DisciplinaTableModel d = (DisciplinaTableModel) TelaDisciplina.tableDisciplinas.getModel();
+					
+					new TelaEditarDisciplina(d.getDisciplina(selectedRow)).setVisible(true);
+				} else {
+					JOptionPane.showMessageDialog(null, "Selecione uma linha na tabela.");
+				}
+			}
+		});
 		contentPane.add(btnEditar);
 		
 		JButton btnExcluir = new JButton("Excluir");
 		btnExcluir.setBounds(309, 263, 114, 25);
+		btnExcluir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int selectedRow = TelaDisciplina.tableDisciplinas.getSelectedRow();
+				
+				if (selectedRow > -1) {
+					DisciplinaTableModel tt= (DisciplinaTableModel) TelaDisciplina.tableDisciplinas.getModel();
+					Disciplina t = tt.getDisciplina(selectedRow);
+					int resposta = JOptionPane.showConfirmDialog(null, "Deseja excluir a disciplina " + t.getCodigo() + " ?", null, JOptionPane.YES_NO_OPTION);
+					
+					if (resposta == 0) {
+						FactoryDAO<Disciplina> ft = new FactoryDAO();
+						
+						Manager<Disciplina> manager = ft.getObjectDAO(t);
+						
+						manager.delete(t.getCodigo());
+						manager.exit();
+						
+						((DisciplinaTableModel)TelaDisciplina.tableDisciplinas.getModel()).update();
+						
+						JOptionPane.showMessageDialog(null, "Disciplina excluída com sucesso.");
+					}
+				} else {
+					JOptionPane.showMessageDialog(null, "Selecione uma linha na tabela.");
+				}
+			}
+		});
 		contentPane.add(btnExcluir);
 	}
 }
