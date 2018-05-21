@@ -82,7 +82,7 @@ public class TelaDisciplina extends JFrame {
 		contentPane.add(entradaCodigo);
 		
 		
-		//ação botão disciplina
+		//aï¿½ï¿½o botï¿½o disciplina
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -92,7 +92,7 @@ public class TelaDisciplina extends JFrame {
 		btnCancelar.setBounds(85, 209, 109, 23);
 		contentPane.add(btnCancelar);		
 		
-		//ação salvar
+		//aï¿½ï¿½o salvar
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

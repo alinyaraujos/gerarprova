@@ -91,7 +91,7 @@ public class TelaCadastraTurma extends JFrame {
 		semestre.setBounds(38, 215, 354, 20);
 		contentPane.add(semestre);
 		
-		//ação cancelar
+		//aï¿½ï¿½o cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -102,7 +102,7 @@ public class TelaCadastraTurma extends JFrame {
 		btnCancelar.setBounds(106, 252, 110, 23);
 		contentPane.add(btnCancelar);
 		
-		//ação salvar
+		//aï¿½ï¿½o salvar
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

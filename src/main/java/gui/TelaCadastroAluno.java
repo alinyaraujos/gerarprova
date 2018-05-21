@@ -72,7 +72,7 @@ public class TelaCadastroAluno extends JFrame {
 		JLabel lblTurma = new JLabel("Turma:");
 		lblTurma.setBounds(48, 160, 74, 14);
 		contentPane.add(lblTurma);
-		
+	
 		JLabel lblMatricula = new JLabel("Matricula:");
 		lblMatricula.setBounds(48, 59, 109, 14);
 		contentPane.add(lblMatricula);
@@ -87,7 +87,7 @@ public class TelaCadastroAluno extends JFrame {
 		selecaoTurma.setBounds(48, 179, 109, 20);
 		contentPane.add(selecaoTurma);
 		
-		//ação cancelar
+		//aï¿½ï¿½o cancelar
 		JButton btnCancelar = new JButton("Cancelar");
 		btnCancelar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -97,7 +97,7 @@ public class TelaCadastroAluno extends JFrame {
 		btnCancelar.setBounds(200, 251, 109, 23);
 		contentPane.add(btnCancelar);
 		
-		//ação salvar
+		//aï¿½ï¿½o salvar
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

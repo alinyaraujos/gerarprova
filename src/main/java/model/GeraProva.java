@@ -21,8 +21,8 @@ import persistencia.QuestaoDAO;
 
 
 public class GeraProva {
-
 	private Document documento = new Document();
+	private Document documentoGabarito = new Document();
 	private FactoryDAO<Prova> fpProva;
 	private FactoryDAO<ProvaQuestao> fpQuestao;
 	private List<Questao> listQuestoes;
@@ -64,14 +64,27 @@ public class GeraProva {
 					if(flag.isEmpty() || flag==null){
 						documento.add(new Paragraph((i+1)+"-"+this.listQuestoes.get(i).getEnunciado()));
 					}else {
-						documento.add(new Paragraph((i+1)+"-"+this.listQuestoes.get(i).getEnunciado()));
-						documento.add(new Paragraph("A)"+this.listQuestoes.get(i).getAssertivaA()));
-						documento.add(new Paragraph("B)"+this.listQuestoes.get(i).getAssertivaB()));
-						documento.add(new Paragraph("C)"+this.listQuestoes.get(i).getAssertivaC()));
-						documento.add(new Paragraph("D)"+this.listQuestoes.get(i).getAssertivaD()));
-						documento.add(new Paragraph("E)"+this.listQuestoes.get(i).getAssertivaE()));
+						documento.add(new Paragraph((i+1)+"- "+this.listQuestoes.get(i).getEnunciado()));
+						documento.add(new Paragraph("A) "+this.listQuestoes.get(i).getAssertivaA()));
+						documento.add(new Paragraph("B) "+this.listQuestoes.get(i).getAssertivaB()));
+						documento.add(new Paragraph("C) "+this.listQuestoes.get(i).getAssertivaC()));
+						documento.add(new Paragraph("D) "+this.listQuestoes.get(i).getAssertivaD()));
+						documento.add(new Paragraph("E) "+this.listQuestoes.get(i).getAssertivaE()));
 					}
+					
+					documento.add(new Paragraph("\n"));
 				}
+				
+				PdfWriter.getInstance(documentoGabarito, new FileOutputStream("./"+apelido+"_gabarito.pdf"));
+				documentoGabarito.open();
+				documentoGabarito.add(new Paragraph("Gabarito "));
+				documentoGabarito.add(new Paragraph(" "));
+				
+				for(int i=0;i<quantidade;i++){
+					documentoGabarito.add(new Paragraph((i+1)+"-"+this.listQuestoes.get(i).getGabarito()));
+					documentoGabarito.add(new Paragraph("\n"));
+				}
+				documentoGabarito.close();
 			}else{
 				return false;
 			}
@@ -122,5 +135,4 @@ public class GeraProva {
 		}
 		return false;
 	}
-	
 }
