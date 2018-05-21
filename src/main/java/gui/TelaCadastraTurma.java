@@ -14,6 +14,7 @@ import patternproject.SingletonProfessor;
 import persistencia.Manager;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
@@ -109,14 +110,18 @@ public class TelaCadastraTurma extends JFrame {
 		JButton btnSalvar = new JButton("Salvar");
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				Turma turma = new Turma();
-				turma.cadastrar(entradaTurma.getText(), Integer.parseInt(ano.getText()) ,semestre.getText(), dados.getProfessor().getCpf());
-				Manager<Turma> turmaManager = fp.getObjectDAO(turma);
-				turmaManager.create();
-				turmaManager.exit();
-				
-				table.update();
-				dispose();
+				try {
+					Turma turma = new Turma();
+					turma.cadastrar(entradaTurma.getText(), Integer.parseInt(ano.getText()) ,semestre.getText(), dados.getProfessor().getCpf());
+					Manager<Turma> turmaManager = fp.getObjectDAO(turma);
+					turmaManager.create();
+					turmaManager.exit();
+					
+					table.update();
+					dispose();
+				}catch(Exception ex){
+		        	JOptionPane.showMessageDialog(null, "Erro ao cadastrar, obs: ano deve ser um numero inteiro");
+		        }
 			}
 		});
 		btnSalvar.setBounds(242, 252, 89, 23);

@@ -90,19 +90,10 @@ public class TelaCadastrarProva extends JFrame {
 		entradaApelido.setBounds(34, 300, 379, 23);
 		contentPane.add(entradaApelido);
 		
-		JLabel lblNivel = new JLabel("Nivel:");
-		lblNivel.setBounds(235, 339, 98, 14);
-		contentPane.add(lblNivel);
-		
 		final JComboBox selecaoTurma = new JComboBox();
 		selecaoTurma.setModel(new TurmaComboBoxModel());
 		selecaoTurma.setBounds(34, 114, 379, 20);
 		contentPane.add(selecaoTurma);
-		
-		final JComboBox comboBoxNivel = new JComboBox();
-		comboBoxNivel.setModel(new DefaultComboBoxModel(new String[] {"", "Facil", "Media", "Dificil"}));
-		comboBoxNivel.setBounds(235, 369, 178, 20);
-		contentPane.add(comboBoxNivel);
 		
 		final JComboBox selecaoAssunto = new JComboBox();
 		selecaoAssunto.setBounds(34, 239, 379, 20);

@@ -1,5 +1,7 @@
 package model;
 
+import java.awt.Desktop;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -98,6 +100,15 @@ public class GeraProva {
 		}
 		
 		documento.close();   
+		
+		// Abrir pdf depois de gerado
+		Desktop desktop = Desktop.getDesktop();
+		File file = new File("./"+apelido+".pdf");
+        if(file.exists()) desktop.open(file);
+        
+        Desktop desktop2 = Desktop.getDesktop();
+        File fileGabarito = new File("./"+apelido+"_gabarito.pdf");
+        if(fileGabarito.exists()) desktop2.open(fileGabarito);
 		return true;
 	}
 	

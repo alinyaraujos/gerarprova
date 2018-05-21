@@ -13,6 +13,7 @@ import patternproject.FactoryDAO;
 import persistencia.Manager;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JComboBox;
 import javax.swing.JButton;
@@ -104,12 +105,16 @@ public class TelaCadastroAluno extends JFrame {
 				Aluno aluno = new Aluno();
 				
 				String codTurma = ((Turma) selecaoTurma.getSelectedItem()).getCodigo();
-				
-				aluno.cadastrar(Integer.parseInt(entradaMatricula.getText()), entradaNome.getText(), codTurma);
-				Manager<Aluno> alunoManager = fp.getObjectDAO(aluno);
-				alunoManager.create();
-				alunoManager.exit();
-				dispose();
+				try{				
+					aluno.cadastrar(Integer.parseInt(entradaMatricula.getText()), entradaNome.getText(), codTurma);
+					Manager<Aluno> alunoManager = fp.getObjectDAO(aluno);
+					alunoManager.create();
+					alunoManager.exit();
+					JOptionPane.showMessageDialog(null, "Aluno cadastrado com sucesso !");
+					dispose();
+		        }catch(Exception ex){
+		        	JOptionPane.showMessageDialog(null, "Erro ao cadastrar");
+		        }
 			}
 		});
 		btnSalvar.setBounds(323, 251, 89, 23);
