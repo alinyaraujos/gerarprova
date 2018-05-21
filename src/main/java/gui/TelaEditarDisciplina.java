@@ -75,6 +75,7 @@ public class TelaEditarDisciplina extends JFrame {
 		
 		textFieldCodigo = new JTextField(d.getCodigo());
 		textFieldCodigo.setBounds(26, 117, 397, 19);
+		textFieldCodigo.setEditable(false);
 		contentPane.add(textFieldCodigo);
 		textFieldCodigo.setColumns(10);
 		
