@@ -16,21 +16,26 @@ import persistencia.Manager;
 public class AlunoTableModel extends AbstractTableModel{
 	
 	private String[] colunas = {"Matricula", "Nome", "Codigo da Turma"};
-	private List<Aluno> Alunos;
+	private List<Aluno> alunos;
 	
 	private final int COLUNA_MATRICULA = 0;
 	private final int COLUNA_NOME = 1;
 	private final int COLUNA_COD_TURMA = 2;
 	
 	public AlunoTableModel(Object t) {
+		this.update(t);
+	}
+	
+	public void update(Object t) {
 		FactoryDAO<Aluno> fp = new FactoryDAO();
 		
 		Aluno a = new Aluno();
 		
 		Manager<Aluno> alunoManager = fp.getObjectDAO(a);
-		this.Alunos =  ((AlunoDAO) alunoManager).getByTurma((Turma)t);
-				
+		this.alunos =  ((AlunoDAO) alunoManager).getByTurma((Turma)t);
 		alunoManager.exit();
+		
+		fireTableDataChanged();
 	}
 
 	public int getColumnCount() {
@@ -38,7 +43,7 @@ public class AlunoTableModel extends AbstractTableModel{
 	}
 
 	public int getRowCount() {
-		return this.Alunos.size();
+		return this.alunos.size();
 	}
 	
 	public String getColumnName(int index) {
@@ -46,7 +51,7 @@ public class AlunoTableModel extends AbstractTableModel{
 	}
 
 	public Object getValueAt(int row, int column) {
-		Aluno Aluno = this.Alunos.get(row);
+		Aluno Aluno = this.alunos.get(row);
 		
 		switch (column) {
 			case COLUNA_MATRICULA:
@@ -61,7 +66,7 @@ public class AlunoTableModel extends AbstractTableModel{
 	}
 	
 	public void setValueAt(Object value, int row, int column) {
-		Aluno Aluno = this.Alunos.get(row);
+		Aluno Aluno = this.alunos.get(row);
 		
 		switch (column) {
 			case COLUNA_MATRICULA:
@@ -77,5 +82,7 @@ public class AlunoTableModel extends AbstractTableModel{
 		
 		fireTableDataChanged();
 	}
-	
+	public Aluno getAluno(int index) {
+		return this.alunos.get(index);
+	}
 }

@@ -19,6 +19,10 @@ public class TurmaTableModel extends AbstractTableModel{
 	private final int COLUNA_SEMESTRE = 2;
 	
 	public TurmaTableModel() {
+		this.update();
+	}
+	
+	public void update() {
 		FactoryDAO<Turma> fp = new FactoryDAO();
 		
 		Turma t = new Turma();
@@ -28,6 +32,8 @@ public class TurmaTableModel extends AbstractTableModel{
 		this.turmas = turmaManager.getAll();
 		
 		turmaManager.exit();
+		
+		fireTableDataChanged();
 	}
 
 	public int getColumnCount() {
@@ -73,6 +79,10 @@ public class TurmaTableModel extends AbstractTableModel{
 		}
 		
 		fireTableDataChanged();
+	}
+	
+	public Turma getTurma(int index) {
+		return this.turmas.get(index);
 	}
 	
 }

@@ -35,7 +35,7 @@ public class TelaCadastraTurma extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					TelaCadastraTurma frame = new TelaCadastraTurma();
+					TelaCadastraTurma frame = new TelaCadastraTurma(new TurmaTableModel());
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +47,9 @@ public class TelaCadastraTurma extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public TelaCadastraTurma() {
+	public TelaCadastraTurma(TurmaTableModel tableModel) {
+		
+		final TurmaTableModel table = tableModel;
 		
 		this.fp = new FactoryDAO();
 		this.dados = SingletonProfessor.getInstance();
@@ -55,6 +57,7 @@ public class TelaCadastraTurma extends JFrame {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 367);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -111,6 +114,8 @@ public class TelaCadastraTurma extends JFrame {
 				Manager<Turma> turmaManager = fp.getObjectDAO(turma);
 				turmaManager.create();
 				turmaManager.exit();
+				
+				table.update();
 				dispose();
 			}
 		});
