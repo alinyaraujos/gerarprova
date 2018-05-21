@@ -65,7 +65,7 @@ public class TelaMinhaInformacao extends JFrame {
 		
 		professorManager.exit();
 		setResizable(false);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 457, 342);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
